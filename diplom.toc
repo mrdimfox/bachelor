@@ -1,0 +1,6 @@
+\select@language {russian}
+\contentsline {section}{Введение}{4}
+\contentsline {section}{\numberline {1}Обзор информационных источников по рассматриваемой проблеме}{6}
+\contentsline {subsection}{\numberline {1.1}Обзор методов управления в условиях запаздывания}{6}
+\contentsline {subsection}{Заключение}{8}
+\contentsline {section}{Литература}{9}

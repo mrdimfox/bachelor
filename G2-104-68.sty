@@ -7,6 +7,7 @@
 \RequirePackage{lastpage}
 \RequirePackage{epsfig}
 \RequirePackage{psfrag}
+\RequirePackage{polyglossia}
 
 \ProvidesPackage{G2-104-68}
          [2002/12/12 v0.01 GOST Frames]
@@ -85,6 +86,18 @@
 % Нижний колонтитул. Заполняем рамки текстом. 
 % Координаты задаются в pt, соответствующие координатам в просмотре
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newfontfamily\gostFont[
+	Path = fonts/,
+    Extension = .ttf,
+    Ligatures = TeX,
+    AutoFakeSlant = 0.26
+]{GostTypeA} %  шрифт для штампов
+
+\newcommand\setGostFont[1]{
+	\textit {\gostFont #1}
+}
+
 \let\@oldoddfoot\@oddfoot
 \def\@oddfoot{%
   \unitlength=1pt
@@ -94,22 +107,22 @@
     \else
     \ifnum \thepage = 3
     % Вторая страница
-		\spbox{539}{66}{594}{79}{c}{\pageref{LastPage}}
-		\spbox{496}{66}{537}{79}{c}{\thepage}
-		\spformedbox{118}{77}{184}{93}{l}{\textsl{\small\@gostrazrabotchik}}
-		\spformedbox{118}{62}{184}{80}{l}{\textsl{\small\@gostproveril}}
-		\spformedbox{118}{35}{184}{51}{l}{\textsl{\small\@gostnormokontroler}}
-		\spformedbox{118}{20}{184}{37}{l}{\textsl{\small\@gostutverdil}}
-		\spbox{261}{90}{593}{140}{c}{\LARGE{\@gostklgi}}
-		\spbox{258}{22}{444}{99}{c}{\parbox{65mm}{\centering\small{\@gosttitleobject \\ \@gosttitledocument}}}
-		\spbox{504}{19}{540}{69}{c}{\parbox{40mm}{\centering\small{\@gosttitlecompany}}}
-		\spbox{460}{70}{460}{74}{c}{\@gostlitera}
+		\spbox{539}{66}{594}{79}{c}{\setGostFont{\pageref{LastPage}}}
+		\spbox{496}{66}{537}{79}{c}{\setGostFont{\thepage}}
+		\spformedbox{118}{77}{184}{93}{l}{\hspace{1mm}\textsl{\small\setGostFont\@gostrazrabotchik}}
+		\spformedbox{118}{62}{184}{80}{l}{\hspace{1mm}\textsl{\small\setGostFont\@gostproveril}}
+		\spformedbox{118}{35}{184}{51}{l}{\textsl{\small\setGostFont\@gostnormokontroler}}
+		\spformedbox{118}{20}{184}{37}{l}{\textsl{\small\setGostFont\@gostutverdil}}
+		\spbox{261}{90}{593}{140}{c}{\LARGE{\setGostFont\@gostklgi}}
+		\spbox{258}{22}{444}{99}{c}{\parbox{65mm}{\centering\small{\setGostFont\@gosttitleobject \\ \@gosttitledocument}}}
+		\spbox{504}{19}{540}{69}{c}{\parbox{40mm}{\centering\small{\setGostFont\@gosttitlecompany}}}
+		\spbox{460}{70}{460}{74}{c}{\setGostFont\@gostlitera}
 	\else
     % Последующие страницы
-		\spbox{523}{22}{553}{45}{c}{\thepage}
-		\spbox{558}{22}{590}{45}{c}{\pageref{LastPage}}
-		\spbox{227}{22}{564}{65}{c}{\LARGE{\@gostklgi}}
-		\spbox{70}{770}{268}{865}{c}{\LARGE{\rotatebox{180}{\@gostklgi}}}
+		\spbox{523}{22}{553}{45}{c}{\setGostFont{\thepage}}
+		\spbox{558}{22}{590}{45}{c}{\setGostFont{\pageref{LastPage}}}
+		\spbox{227}{22}{564}{65}{c}{\LARGE\setGostFont{\@gostklgi}}
+		\spbox{70}{770}{268}{865}{c}{\LARGE{\rotatebox{180}{\setGostFont\@gostklgi}}}
 	\fi
     \fi
   \end{picture}
