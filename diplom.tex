@@ -2,14 +2,16 @@
 
 \usepackage{polyglossia}  % многоязычная вёрстка
 
-\usepackage{amstext}
-\usepackage{amssymb}
-\usepackage{amsmath}
-\usepackage{diplom}
-\usepackage{makecell}
-\usepackage{multirow}
-\usepackage{ulem}
-\usepackage{indentfirst}
+\usepackage{diplom}		  % штампы, настройки шрифтов и прочее для диплома
+\usepackage{makecell}	  % для работы с выравниваем в таблицах
+\usepackage{multirow}     % разбивка ячейки на несколько рядов
+\usepackage{ulem}		  % различные виды подчёркиваний
+\usepackage{indentfirst}  % постоянно делать отступ красной строки
+						  % для нового параграфа
+\usepackage{hyperref}	  % гипертекст и перекрёстные ссылки
+
+% Расширенные наборы математических символов
+\usepackage{amssymb,amsmath,amsfonts,latexsym,mathtext}
 
 % Устанавливает главный язык документа
 \setdefaultlanguage[spelling=modern]{russian}  	
@@ -19,38 +21,44 @@
 % Свойства шрифтов по умолчанию
 \defaultfontfeatures{Ligatures={TeX}}
 
-\setmainfont [Ligatures=TeX] {Times New Roman}  % основной шрифт документа
+\setmainfont[Ligatures=TeX]{Times New Roman}  % основной шрифт документа
 \setsansfont{PT Sans}  % шрифт без засечек
 \setmonofont{Consolas}  % моноширинный шрифт
 
-% Глубина разделов, попадающих в содержание
-\setcounter{tocdepth}{2}
 
-\renewcommand\theadfont{\normalsize}
+\makeatletter
 
-\input{environment}
-\linespread{1.3}  % настройка межстрочного интервала
-\tolerance=1000  % настройка чувствительности вставки переносов
-\hfuzz=0pt
-\sloppy
+	% Глубина разделов, попадающих в содержание
+	\setcounter{tocdepth}{2}
 
-\graphicspath{{images/}}  % путь к папке с картинками
+	\renewcommand\theadfont{\normalsize}
+	
+	\input{environment} % настройка некоторых окружений
+	\linespread{1.3}    % настройка межстрочного интервала
+	\tolerance=1000     % настройка чувствительности вставки переносов
+	\hfuzz=0pt
+	\sloppy
+	
+	\graphicspath{{images/}}  % путь к папке с картинками
+	
+	% Данные для заполнения рамок
+	\titleDepartment{КТиУ}
+	\titleSchollOf{220200}
+	\titleDegree{бакалавр техники и технологии}
+	\titleСhief{Специализация}
+	\titleSubDepartment{КСУИ}
+	\gostklgi{КСУИ.0144147.001 ПЗ}
+	\gostrazrabotchik{Фамилия И.О}  % студента
+	\gostproveril{Фамилия И.О.}  % проверяющего
+	\gostnormokontroler{}
+	\gostutverdil{}
+	\gosttitledocument{Большое и труднопроизносимое, для пущей важности, название работы}
+	\gosttitlecompany{СПбГУ ИТМО\\Кафедра СУИ}
+	\gostlitera{д}  % буква в таблице, ставится только в дипломной работе, в УИРС не надо
+	\date{}
 
-% Данные для заполнения рамок
-\titleDepartment{КТиУ}
-\titleSchollOf{220200}
-\titleDegree{бакалавр техники и технологии}
-\titleСhief{Специализация}
-\titleSubDepartment{КСУИ}
-\gostklgi{КСУИ.0144147.001 ПЗ}
-\gostrazrabotchik{Фамилия И.О}  % студента
-\gostproveril{Фамилия И.О.}  % проверяющего
-\gostnormokontroler{}
-\gostutverdil{}
-\gosttitledocument{Название работы}
-\gosttitlecompany{СПбГУ ИТМО\\Кафедра СУИ}
-\gostlitera{д}  % буква в таблице, ставится только в дипломной работе, в УИРС не надо
-\date{}
+\makeatother
+
 
 \begin{document}
 	% Переменование "Список литературы" в "Литература"
