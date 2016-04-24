@@ -1,11 +1,7 @@
-\documentclass[a4paper,14pt,russian]{article}
-% Дополнительные пакеты
-\usepackage[T2A]{fontenc}
-\usepackage[cp1251]{inputenc}
-\usepackage[russian]{babel}
-%\usepackage{pscyr} Хорошо бы уставновить эти шрифты и активировать данный пакет
-\usepackage{times} % На первое время можно использовать просто Times
-\usepackage{graphicx}
+\documentclass[a4paper]{article}
+
+\usepackage{polyglossia}  % РјРЅРѕРіРѕСЏР·С‹С‡РЅР°СЏ РІС‘СЂСЃС‚РєР°
+
 \usepackage{amstext}
 \usepackage{amssymb}
 \usepackage{amsmath}
@@ -15,124 +11,63 @@
 \usepackage{ulem}
 \usepackage{indentfirst}
 
-% Глубина разделов, попадающих в содержание
+% РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ РіР»Р°РІРЅС‹Р№ СЏР·С‹Рє РґРѕРєСѓРјРµРЅС‚Р°
+\setdefaultlanguage[spelling=modern]{russian}  	
+% РћР±СЉСЏРІР»СЏРµС‚ РІС‚РѕСЂРѕР№ СЏР·С‹Рє РґРѕРєСѓРјРµРЅС‚Р°
+\setotherlanguage{english}
+
+% РЎРІРѕР№СЃС‚РІР° С€СЂРёС„С‚РѕРІ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
+\defaultfontfeatures{Ligatures={TeX}}
+
+\setmainfont [Ligatures=TeX] {Times New Roman}  % РѕСЃРЅРѕРІРЅРѕР№ С€СЂРёС„С‚ РґРѕРєСѓРјРµРЅС‚Р°
+\setsansfont{PT Sans}  % С€СЂРёС„С‚ Р±РµР· Р·Р°СЃРµС‡РµРє
+\setmonofont{Consolas}  % РјРѕРЅРѕС€РёСЂРёРЅРЅС‹Р№ С€СЂРёС„С‚
+
+% Р“Р»СѓР±РёРЅР° СЂР°Р·РґРµР»РѕРІ, РїРѕРїР°РґР°СЋС‰РёС… РІ СЃРѕРґРµСЂР¶Р°РЅРёРµ
 \setcounter{tocdepth}{2}
 
-%\renewcommand{\rmdefault}{cmss}  Это шрифт Computer Modern Sans
-%\renewcommand{\rmdefault}{ftm} Это активируйте, если установили PSCyr
 \renewcommand\theadfont{\normalsize}
 
 \input{environment}
-\linespread{1.3} % настройка межстрочного интервала
-\tolerance=1000 % настройка чувствительности вставки переносов
+\linespread{1.3}  % РЅР°СЃС‚СЂРѕР№РєР° РјРµР¶СЃС‚СЂРѕС‡РЅРѕРіРѕ РёРЅС‚РµСЂРІР°Р»Р°
+\tolerance=1000  % РЅР°СЃС‚СЂРѕР№РєР° С‡СѓРІСЃС‚РІРёС‚РµР»СЊРЅРѕСЃС‚Рё РІСЃС‚Р°РІРєРё РїРµСЂРµРЅРѕСЃРѕРІ
 \hfuzz=0pt
 \sloppy
 
-% путь к папке с картинками
-\graphicspath{{images/}}
+\graphicspath{{images/}}  % РїСѓС‚СЊ Рє РїР°РїРєРµ СЃ РєР°СЂС‚РёРЅРєР°РјРё
 
-% Данные для заполнения рамок
-\titleDepartment{КТиУ}
+% Р”Р°РЅРЅС‹Рµ РґР»СЏ Р·Р°РїРѕР»РЅРµРЅРёСЏ СЂР°РјРѕРє
+\titleDepartment{РљРўРёРЈ}
 \titleSchollOf{220200}
-\titleDegree{бакалавр техники и технологии}
-\titleСhief{Специализация}
-\titleSubDepartment{КСУИ}
-\gostklgi{КСУИ.0144147.001 ПЗ}
-\gostrazrabotchik{Фамилия И.О} % студента
-\gostproveril{Фамилия И.О.} % проверяющего
+\titleDegree{Р±Р°РєР°Р»Р°РІСЂ С‚РµС…РЅРёРєРё Рё С‚РµС…РЅРѕР»РѕРіРёРё}
+\titleРЎhief{РЎРїРµС†РёР°Р»РёР·Р°С†РёСЏ}
+\titleSubDepartment{РљРЎРЈР}
+\gostklgi{РљРЎРЈР.0144147.001 РџР—}
+\gostrazrabotchik{Р¤Р°РјРёР»РёСЏ Р.Рћ}  % СЃС‚СѓРґРµРЅС‚Р°
+\gostproveril{Р¤Р°РјРёР»РёСЏ Р.Рћ.}  % РїСЂРѕРІРµСЂСЏСЋС‰РµРіРѕ
 \gostnormokontroler{}
 \gostutverdil{}
-\gosttitledocument{Название работы}
-\gosttitlecompany{СПбГУ ИТМО\\Кафедра СУИ}
-\gostlitera{д} % буква в таблице, ставится только в дипломной работе, в УИРС не надо
+\gosttitledocument{РќР°Р·РІР°РЅРёРµ СЂР°Р±РѕС‚С‹}
+\gosttitlecompany{РЎРџР±Р“РЈ РРўРњРћ\\РљР°С„РµРґСЂР° РЎРЈР}
+\gostlitera{Рґ}  % Р±СѓРєРІР° РІ С‚Р°Р±Р»РёС†Рµ, СЃС‚Р°РІРёС‚СЃСЏ С‚РѕР»СЊРєРѕ РІ РґРёРїР»РѕРјРЅРѕР№ СЂР°Р±РѕС‚Рµ, РІ РЈРР РЎ РЅРµ РЅР°РґРѕ
 \date{}
 
 \begin{document}
-	% Переменование "Список литературы" в "Литература"
-	\renewcommand{\refname}{Литература}
+	% РџРµСЂРµРјРµРЅРѕРІР°РЅРёРµ "РЎРїРёСЃРѕРє Р»РёС‚РµСЂР°С‚СѓСЂС‹" РІ "Р›РёС‚РµСЂР°С‚СѓСЂР°"
+	\renewcommand{\refname}{Р›РёС‚РµСЂР°С‚СѓСЂР°}
 	
-	% Первая страница это Титульный лист
-	% \maketitle команда отключена, так как титульный лист дается на кафедре
-	% Вторая страница это задание	
-	% Задание 
-	% Поэтому сам диплом начинается с третьей страницы	
+	% РџРµСЂРІР°СЏ СЃС‚СЂР°РЅРёС†Р° СЌС‚Рѕ РўРёС‚СѓР»СЊРЅС‹Р№ Р»РёСЃС‚
+	% \maketitle РєРѕРјР°РЅРґР° РѕС‚РєР»СЋС‡РµРЅР°, С‚Р°Рє РєР°Рє С‚РёС‚СѓР»СЊРЅС‹Р№ Р»РёСЃС‚ РґР°РµС‚СЃСЏ РЅР° РєР°С„РµРґСЂРµ
+	% Р’С‚РѕСЂР°СЏ СЃС‚СЂР°РЅРёС†Р° СЌС‚Рѕ Р·Р°РґР°РЅРёРµ	
+	% Р—Р°РґР°РЅРёРµ 
+	% РџРѕСЌС‚РѕРјСѓ СЃР°Рј РґРёРїР»РѕРј РЅР°С‡РёРЅР°РµС‚СЃСЏ СЃ С‚СЂРµС‚СЊРµР№ СЃС‚СЂР°РЅРёС†С‹	
 	\setcounter{page}{3}
-	% Содержание
+	% РЎРѕРґРµСЂР¶Р°РЅРёРµ
 	\tableofcontents
-	% Примеры разделов ПЗ
-	\include{introduction} % подцепляет файл intoduction.tex
+	% РџСЂРёРјРµСЂС‹ СЂР°Р·РґРµР»РѕРІ РџР—
+	\include{introduction} % РїРѕРґС†РµРїР»СЏРµС‚ С„Р°Р№Р» intoduction.tex
 	\include{overview}
-	% \include{definition} и т.д создаете столько файлов и разделов, сколько нужно
-	% \include{tests}
-	\include{conclusion} 
-	\include{bibliography}
-\end{document}
-\documentclass[a4paper,14pt,russian]{article}
-% Дополнительные пакеты
-\usepackage[T2A]{fontenc}
-\usepackage[cp1251]{inputenc}
-\usepackage[russian]{babel}
-%\usepackage{pscyr} Хорошо бы уставновить эти шрифты и активировать данный пакет
-\usepackage{times} % На первое время можно использовать просто Times
-\usepackage{graphicx}
-\usepackage{amstext}
-\usepackage{amssymb}
-\usepackage{amsmath}
-\usepackage{diplom}
-\usepackage{makecell}
-\usepackage{multirow}
-\usepackage{ulem}
-\usepackage{indentfirst}
-\usepackage{cmap} % позволяет копировать кириллицу из скомпилированного файла
-
-% Глубина разделов, попадающих в содержание
-\setcounter{tocdepth}{2}
-
-%\renewcommand{\rmdefault}{cmss}  Это шрифт Computer Modern Sans
-%\renewcommand{\rmdefault}{ftm} Это активируйте, если установили PSCyr
-\renewcommand\theadfont{\normalsize}
-
-\input{environment}
-\linespread{1.3} % настройка межстрочного интервала
-\tolerance=1000 % настройка чувствительности вставки переносов
-\hfuzz=0pt
-\sloppy
-
-% путь к папке с картинками
-\graphicspath{{images/}}
-
-% Данные для заполнения рамок
-\titleDepartment{КТиУ}
-\titleSchollOf{220200}
-\titleDegree{бакалавр техники и технологии}
-\titleСhief{Специализация}
-\titleSubDepartment{КСУИ}
-\gostklgi{КСУИ.0144147.001 ПЗ}
-\gostrazrabotchik{Фамилия И.О} % студента
-\gostproveril{Фамилия И.О.} % проверяющего
-\gostnormokontroler{}
-\gostutverdil{}
-\gosttitledocument{Название работы}
-\gosttitlecompany{СПбГУ ИТМО\\Кафедра СУИ}
-\gostlitera{д} % буква в таблице, ставится только в дипломной работе, в УИРС не надо
-\date{}
-
-\begin{document}
-	% Переменование "Список литературы" в "Литература"
-	\renewcommand{\refname}{Литература}
-	
-	% Первая страница это Титульный лист
-	% \maketitle команда отключена, так как титульный лист дается на кафедре
-	% Вторая страница это задание	
-	% Задание 
-	% Поэтому сам диплом начинается с третьей страницы	
-	\setcounter{page}{3}
-	% Содержание
-	\tableofcontents
-	% Примеры разделов ПЗ
-	\include{introduction} % подцепляет файл intoduction.tex
-	\include{overview}
-	% \include{definition} и т.д создаете столько файлов и разделов, сколько нужно
+	% \include{definition} Рё С‚.Рґ СЃРѕР·РґР°РµС‚Рµ СЃС‚РѕР»СЊРєРѕ С„Р°Р№Р»РѕРІ Рё СЂР°Р·РґРµР»РѕРІ, СЃРєРѕР»СЊРєРѕ РЅСѓР¶РЅРѕ
 	% \include{tests}
 	\include{conclusion} 
 	\include{bibliography}

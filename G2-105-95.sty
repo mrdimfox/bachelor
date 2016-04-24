@@ -1,19 +1,19 @@
 \NeedsTeXFormat{LaTeX2e}
 
-\RequirePackage{multicol}	% Многоколоночность
-\RequirePackage{textcomp}	% Ввод различных знаков
+\RequirePackage{multicol}	% РњРЅРѕРіРѕРєРѕР»РѕРЅРѕС‡РЅРѕСЃС‚СЊ
+\RequirePackage{textcomp}	% Р’РІРѕРґ СЂР°Р·Р»РёС‡РЅС‹С… Р·РЅР°РєРѕРІ
 \RequirePackage{floatflt}
 \RequirePackage{float}
-\RequirePackage{rotating}	% Вращение объектов
-\RequirePackage{calc}		% Для возможности численных расчетов
+\RequirePackage{rotating}	% Р’СЂР°С‰РµРЅРёРµ РѕР±СЉРµРєС‚РѕРІ
+\RequirePackage{calc}		% Р”Р»СЏ РІРѕР·РјРѕР¶РЅРѕСЃС‚Рё С‡РёСЃР»РµРЅРЅС‹С… СЂР°СЃС‡РµС‚РѕРІ
 
 \RequirePackage{ifthen}
-\RequirePackage{geometry}	% Для остановки плавающих объектов
-\RequirePackage{indentfirst}	% Начинать абзацы с красной строки
+\RequirePackage{geometry}	% Р”Р»СЏ РѕСЃС‚Р°РЅРѕРІРєРё РїР»Р°РІР°СЋС‰РёС… РѕР±СЉРµРєС‚РѕРІ
+\RequirePackage{indentfirst}	% РќР°С‡РёРЅР°С‚СЊ Р°Р±Р·Р°С†С‹ СЃ РєСЂР°СЃРЅРѕР№ СЃС‚СЂРѕРєРё
 \RequirePackage{caption}
 \RequirePackage{longtable}
-\RequirePackage{footnpag}	% Внешний вид сносок
-\RequirePackage[bottom]{footmisc}  %Для установки сносок всегда внизу страницы 
+\RequirePackage{footnpag}	% Р’РЅРµС€РЅРёР№ РІРёРґ СЃРЅРѕСЃРѕРє
+\RequirePackage[bottom]{footmisc}  %Р”Р»СЏ СѓСЃС‚Р°РЅРѕРІРєРё СЃРЅРѕСЃРѕРє РІСЃРµРіРґР° РІРЅРёР·Сѓ СЃС‚СЂР°РЅРёС†С‹ 
 
 \ProvidesPackage{G2-105-95}
          [2002/12/12 v0.01 General reqs.]
@@ -24,10 +24,10 @@
 \renewcommand\small{\@setfontsize\small{12}{12}\selectfont}
 \renewcommand\normalsize{\@setfontsize\normalsize{14}{19}\selectfont}
 
-% Центрированные подписи к рисункам
+% Р¦РµРЅС‚СЂРёСЂРѕРІР°РЅРЅС‹Рµ РїРѕРґРїРёСЃРё Рє СЂРёСЃСѓРЅРєР°Рј
 %\captionstyle{centerlast}
 
-% Центрирование подписей к рисункам
+% Р¦РµРЅС‚СЂРёСЂРѕРІР°РЅРёРµ РїРѕРґРїРёСЃРµР№ Рє СЂРёСЃСѓРЅРєР°Рј
 % \renewenvironment{figure}
 %              {\captionstyle{centerlast} \@float{figure}}
 %              {\end@float}
@@ -37,14 +37,14 @@
 %               {\end@dblfloat}
 
 
-% FIXME: не получается переопределить окружение table с форматированием caption слева -- получается caption в колонку
+% FIXME: РЅРµ РїРѕР»СѓС‡Р°РµС‚СЃСЏ РїРµСЂРµРѕРїСЂРµРґРµР»РёС‚СЊ РѕРєСЂСѓР¶РµРЅРёРµ table СЃ С„РѕСЂРјР°С‚РёСЂРѕРІР°РЅРёРµРј caption СЃР»РµРІР° -- РїРѕР»СѓС‡Р°РµС‚СЃСЏ caption РІ РєРѕР»РѕРЅРєСѓ
 %\renewenvironment{table}
 %               {\@float{table} \captionstyle{flushleft}}
 %               {\end@float}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Настройки размера страницы
+% РќР°СЃС‚СЂРѕР№РєРё СЂР°Р·РјРµСЂР° СЃС‚СЂР°РЅРёС†С‹
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %FIXME
 \ifnum 1 > 0
@@ -64,7 +64,7 @@
 	   \setlength{\headheight}{0pt}
 	   \setlength{\headsep}{0pt}
 	\else
-		\parindent=15mm  % Абзацный отступ (п.3.6)
+		\parindent=15mm  % РђР±Р·Р°С†РЅС‹Р№ РѕС‚СЃС‚СѓРї (Рї.3.6)
 		%\geometry{verbose, a4paper, noheadfoot, left=25mm, right=12mm, height=225mm,bottom=30mm}
 		%\geometry{verbose, a4paper, left=25mm, right=12mm, height=225mm,bottom=30mm}
 		\geometry{verbose, a4paper, left=25mm, right=12mm, height=225mm}
@@ -74,7 +74,7 @@
 \fi
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Титульный лист
+% РўРёС‚СѓР»СЊРЅС‹Р№ Р»РёСЃС‚
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   \def\gostgrifsoglasovano#1{\gdef\@gostgrifsoglasovano{#1}} 
   \def\gostgrifutverjdeno#1{\gdef\@gostgrifutverjdeno{#1}} 
@@ -92,11 +92,11 @@
   \def\titleDepartment#1{\gdef\@titleDepartment{#1}} 
   \def\titleSchollOf#1{\gdef\@titleSchollOf{#1}} 
   \def\titleDegree#1{\gdef\@titleDegree{#1}} 
-  \def\titleСhief#1{\gdef\@titleСhief{#1}} 
+  \def\titleРЎhief#1{\gdef\@titleРЎhief{#1}} 
   \def\titleSubDepartment#1{\gdef\@titleSubDepartment{#1}} 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Переопределение пунктов (п.4.1.3)
+% РџРµСЂРµРѕРїСЂРµРґРµР»РµРЅРёРµ РїСѓРЅРєС‚РѕРІ (Рї.4.1.3)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\addtocounter{secnumdepth}{-2}
 
@@ -152,14 +152,14 @@
     }%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Раздел с новой страницы
+% Р Р°Р·РґРµР» СЃ РЅРѕРІРѕР№ СЃС‚СЂР°РЅРёС†С‹
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % FIXME: \clearpage
 %	\newcommand{\gostnewpage}{\newpage}                                     
 	\newcommand{\gostnewpage}{\clearpage}                                     
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Переопределение вида разделов
+% РџРµСЂРµРѕРїСЂРµРґРµР»РµРЅРёРµ РІРёРґР° СЂР°Р·РґРµР»РѕРІ
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \renewcommand\section{%                    
                      \renewcommand{\theengost}{\thesection.\@arabic\c@engost}
@@ -201,19 +201,19 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Настройка вида подписей к рисункам и таблицам
+%% РќР°СЃС‚СЂРѕР№РєР° РІРёРґР° РїРѕРґРїРёСЃРµР№ Рє СЂРёСЃСѓРЅРєР°Рј Рё С‚Р°Р±Р»РёС†Р°Рј
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\renewcommand\captionmargin{0.2cm}
-% Подпись к рисунку
+% РџРѕРґРїРёСЃСЊ Рє СЂРёСЃСѓРЅРєСѓ
 %\AtBeginDocument{
 %	\addto\captionsrussian{
-%		\def\figurename{Рисуно1к}
+%		\def\figurename{Р РёСЃСѓРЅРѕ1Рє}
 %	}
 %}
-\captionsetup[figure]{font=large,figurename=Рисунок,justification=centering,labelsep=endash}
+\captionsetup[figure]{name=Р РёСЃСѓРЅРѕРє,justification=centering,labelsep=endash,font=large}
 %\renewcommand*\captionlabeldelim{~--~}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% update: Подпись к рисункам
+%% update: РџРѕРґРїРёСЃСЊ Рє СЂРёСЃСѓРЅРєР°Рј
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\def\capfigure{figure}
 %\def\captable{table}
@@ -228,26 +228,26 @@
 %\setlength\abovecaptionskip{2\p@}
 %\setlength\belowcaptionskip{1\p@}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Настройка номера формулы и ссылки на нее
+% РќР°СЃС‚СЂРѕР№РєР° РЅРѕРјРµСЂР° С„РѕСЂРјСѓР»С‹ Рё СЃСЃС‹Р»РєРё РЅР° РЅРµРµ
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%FIXME: мне это не нужно.
+%FIXME: РјРЅРµ СЌС‚Рѕ РЅРµ РЅСѓР¶РЅРѕ.
 %  \def\@eqnnum{{\normalfont \normalcolor \theequation}}
 %  \renewcommand{\theequation}{(\arabic{equation})}%
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%Тире в перечислении (ненумерованном списке)
+%РўРёСЂРµ РІ РїРµСЂРµС‡РёСЃР»РµРЅРёРё (РЅРµРЅСѓРјРµСЂРѕРІР°РЅРЅРѕРј СЃРїРёСЃРєРµ)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \renewcommand{\labelitemi}{\normalfont\bfseries{--}}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%Сноски со скобкой
+%РЎРЅРѕСЃРєРё СЃРѕ СЃРєРѕР±РєРѕР№
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  \renewcommand\thefootnote{\@arabic\c@footnote)}%   
 
 
-% Для выравнивания длинных таблиц
+% Р”Р»СЏ РІС‹СЂР°РІРЅРёРІР°РЅРёСЏ РґР»РёРЅРЅС‹С… С‚Р°Р±Р»РёС†
 \LTleft=\z@
 \LTright=\fill
 
@@ -266,8 +266,8 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%Исключение двусмысленных русских букв из алфавита 
-%для нумерации приложений
+%РСЃРєР»СЋС‡РµРЅРёРµ РґРІСѓСЃРјС‹СЃР»РµРЅРЅС‹С… СЂСѓСЃСЃРєРёС… Р±СѓРєРІ РёР· Р°Р»С„Р°РІРёС‚Р° 
+%РґР»СЏ РЅСѓРјРµСЂР°С†РёРё РїСЂРёР»РѕР¶РµРЅРёР№
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \def\GostAsbuk#1{\expandafter\@GostAsbuk\csname c@#1\endcsname}                         
 \def\@GostAsbuk#1{\ifcase#1\or                                                      
@@ -279,7 +279,7 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%% Далее текст документа %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% Р”Р°Р»РµРµ С‚РµРєСЃС‚ РґРѕРєСѓРјРµРЅС‚Р° %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newenvironment{gostitemize}
@@ -294,7 +294,7 @@
 
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%% Нумерация списков     %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% РќСѓРјРµСЂР°С†РёСЏ СЃРїРёСЃРєРѕРІ     %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \renewcommand{\theenumi}{\asbuk{enumi}}
 \renewcommand{\theenumii}{\arabic{enumii}}
