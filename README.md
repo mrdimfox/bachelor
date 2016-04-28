@@ -10,7 +10,8 @@ Forked from [vedyakov/bachelor](https://github.com/vedyakov/bachelor). Remaded f
 
 # Style files:
 * ``diplom.sty`` &mdash; main style file,
-* ``G2-104-68.sty``, ``G2-105-95.sty`` &mdash; GOST style files.
+* ``G2-104-68.sty``, ``G2-105-95.sty`` &mdash; GOST style files,
+* ``makevar.sty`` &mdash; handmade package for using local scoped counters
 
 # TODO:
 * [x] make text in frames with variable width, depends on box width;
