@@ -13,16 +13,17 @@
 \RequirePackage{caption}
 \RequirePackage{longtable}
 \RequirePackage{footnpag}			% Внешний вид сносок
-\RequirePackage[bottom]{footmisc}   % Для установки сносок всегда внизу страницы 
+\RequirePackage[bottom]{footmisc}   % Для установки сносок всегда внизу страницы
+
+\RequirePackage{polyglossia}
 
 \ProvidesPackage{G2-105-95}
          [2002/12/12 v0.01 General reqs.]
 
-\renewcommand\large{\@setfontsize\large{14}{14}\selectfont}
-\renewcommand\Large{\@setfontsize\Large{16}{17}\selectfont}
-\renewcommand\Large{\@setfontsize\LARGE{15}{15}\selectfont}
-\renewcommand\small{\@setfontsize\small{12}{12}\selectfont}
-\renewcommand\normalsize{\@setfontsize\normalsize{14}{19}\selectfont}
+\renewcommand\large{\@setfontsize\large{14}{16.8}\selectfont}
+\renewcommand\Large{\@setfontsize\Large{16}{19.2}\selectfont}
+\renewcommand\small{\@setfontsize\small{10}{12}\selectfont}
+\renewcommand\normalsize{\@setfontsize\normalsize{12}{14.4}\selectfont}
 
 % Центрированные подписи к рисункам
 %\captionstyle{centerlast}
@@ -145,15 +146,15 @@
 \newcounter{ensubgost}[engost]	    			
 \renewcommand{\theensubgost}{\theengost.\arabic{ensubgost}}%              
 \newenvironment{ensubgost}
-    {%
-    \renewcommand{\item}%
-    {
-    \par%
-    \refstepcounter{ensubgost}%
-    \theensubgost%
-    \quad%
-    }
-    }%
+{%
+	\renewcommand{\item}%
+	{
+		\par%
+		\refstepcounter{ensubgost}%
+		\theensubgost%
+		\quad%
+	}
+}%
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -173,7 +174,7 @@
 	\@startsection{section}{1}{\z@}%
 		{-3.25ex \@plus -1ex \@minus -.2ex}%                                 		
 		{1.5ex\@plus.2ex}%
-		{\normalfont\Large}%
+		{\normalfont\Large\bfseries}%
 }
 		
 \renewcommand\subsection{%
@@ -191,7 +192,7 @@
 	\@startsection{subsubsection}{3}{\z@}%
 		{-3.25ex\@plus -1ex \@minus -.2ex}%
 		{1.5ex \@plus .2ex}%
-		{\normalfont\Large}%
+		{\normalfont\large}%
 }
 
 \renewcommand\paragraph{%

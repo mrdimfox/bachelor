@@ -186,13 +186,13 @@
 			\rule[0.1\baselineskip]{0pt}{\baselineskip}%
 		}%
 		% Настройки размера заголовка конфигурируются пользователем
-		\gostBox{65}{0}{129}{25}{\@gosttitledocument}{c}{\setstretch{1.5}}%
+		\gostBox{65}{0}{129}{25}{\@gosttitledocument}{c}{\setstretch{1.1}}%
 		\gostBox{17}{20}{40}{25}{\small{\@gostrazrabotchik}}{l}{}%
 		\gostBox{17}{15}{40}{20}{\small{\@gostproveril}}{l}{}%
 		\gostBox{17}{5}{40}{10}{\small{\@gostnormokontroler}}{l}{}%
 		\gostBox{17}{0}{40}{5}{\small{\@gostutverdil}}{l}{}%
 		% Настройки размера надписи ниже конфигурируются пользователем
-		\gostBox{130}{0}{180}{15}{\@gosttitlecompany}{c}{}%
+		\gostBox{130}{0}{180}{15}{\@gosttitlecompany}{c}{\setstretch{1}}%
 		\gostBox{130}{15}{135}{20}{\small{\@gostlitera}}{c}{}%
 		\gostBox{130}{15}{135}{20}{\small{\@gostlitera}}{c}{}%
 		\gostBox{55}{20}{65}{25}{\small{\@gostdate}}{c}{}%
@@ -260,6 +260,4 @@
 		\fi%
 	}%
 }%
-\let\@evenfoot\@oddfoot
-\let\@evenhead\@oddhead
 \endinput

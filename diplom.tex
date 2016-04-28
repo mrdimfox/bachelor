@@ -28,6 +28,9 @@
 
 \makeatletter
 
+	% Сегодняшняя дата в правильном формате
+	\newcommand{\nowDate}{\two@digits{\number\month}.\two@digits{\number\day}.\number\year}
+
 	% Глубина разделов, попадающих в содержание
 	\setcounter{tocdepth}{2}
 
@@ -62,7 +65,7 @@
 		\large{Кафедра СУИ, гр. X6666}	% кафдра, группа
 	}
 	\gostlitera{д}  % буква в таблице, ставится только в дипломной работе, в УИРС не надо
-	\gostdate{01.01.16}
+	\gostdate{\nowDate}
 
 \makeatother
 
