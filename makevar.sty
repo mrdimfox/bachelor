@@ -1,0 +1,93 @@
+\NeedsTeXFormat{LaTeX2e}
+
+\ProvidesPackage{makevar}
+         [2016/04/28 v0.01 Made pseudo local scope counters]
+
+\RequirePackage{lcg} 		% Use for generate random var name
+\RequirePackage{ifthen}     % Use for \whileloop command
+
+\newcounter{varnum}         % use for save random var postfix
+\newcounter{varIsNotExist}  % use as flag for loop ending
+\def\isTrue{1}              % true
+
+\def\CountOfVars#1{\gdef\@CountOfVars{#1}}  % posible count of variables
+
+\ifdefined\@CountOfVars 
+    \reinitrand[first=1, last=\@CountOfVars]
+\fi
+
+%% COMMAND \ifcounter
+%
+% Check counter existing
+%
+% \ifcounter{couterName}{
+%    <code if counter exist>   
+% }{
+%    <code if counter not exist> 
+% }
+%
+\newcommand*\ifcounter[1]{%
+    \ifcsname c@#1\endcsname
+    \expandafter\@firstoftwo
+    \else
+    \expandafter\@secondoftwo
+    \fi
+}
+
+%% COMMAND \generateVarAlias
+%
+% Generate alias for variable
+%
+% \generateVarAlias{foo}
+% \foo return VaRXXXX there XXXX - rand number
+%      from 1 to 1024.
+% \foo is alias for VaRXXXX
+%
+\newcommand\generateVarAlias[1]{%
+    \expandafter\edef\csname#1\endcsname{VaR\thevarnum}%
+}
+
+%% MACROS \var{}
+%
+% Make pseudo local scoped counter
+%
+% #1 - name for variable
+% #2 - init value
+%
+% \var{foo}{0}
+% \foo % return VaRXXXX there XXXX - rand number
+%      % from 1 to 1024. VaRXXXX -- random generated
+%      % counter.
+% Inside local scope \value{\foo} equivalent of \value{VaRXXXX}
+%
+% {
+%	  \var{bar}{0}
+%	  \bar			% work here
+% }
+% \bar % dot't work here, cause out of scope
+%
+\def\var#1#2{%
+    \rand%
+    \setcounter{varnum}{\value{rand}}%
+    %
+    \setcounter{varIsNotExist}{0}%
+    \whiledo{\not{\value{varIsNotExist}=\isTrue}}{%
+        \ifcounter{VaR\thevarnum}{%
+            \relax%
+        }{%
+            \setcounter{varIsNotExist}{\isTrue}%
+        }%
+    }%
+    \generateVarAlias{#1}%
+    \newcounter{VaR\thevarnum}%
+    \setcounter{VaR\thevarnum}{#2}%
+}
+
+%% COMMAND \setvar
+%
+% Work exactly like \setcounter
+%
+\newcommand{\setvar}[2]{%
+	\setcounter{#1}{#2}%	
+}
+\endinput

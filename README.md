@@ -13,8 +13,8 @@ Forked from [vedyakov/bachelor](https://github.com/vedyakov/bachelor). Remaded f
 * ``G2-104-68.sty``, ``G2-105-95.sty`` &mdash; GOST style files.
 
 # TODO:
-* [ ] make text in frames with variable width, depends on box width;
-* [ ] make font size in frames like GOST says;
+* [x] make text in frames with variable width, depends on box width;
+* [x] make font size in frames like GOST says;
 * [ ] make GOST headings (section, subsection, etc.);
 * [ ] clean styles;
 * [ ] all other stuff.

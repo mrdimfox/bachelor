@@ -1,154 +1,265 @@
 \NeedsTeXFormat{LaTeX2e}
 
-\RequirePackage{ifthen}
-\RequirePackage{eso-pic}
-\RequirePackage{graphicx}
-\RequirePackage{everyshi}
-\RequirePackage{lastpage}
-\RequirePackage{epsfig}
-\RequirePackage{psfrag}
-\RequirePackage{polyglossia}
+\RequirePackage{calc}		 % использование вычислений
+\RequirePackage{ifthen}		 % условные операторы
+\RequirePackage{eso-pic}	 % добавление графики на задний фон
+\RequirePackage{tikz}		 % отрисовка графики
+\RequirePackage{everyshi}	 % вывод на каждой странице
+\RequirePackage{lastpage}    % номер последней станицы
+\RequirePackage{polyglossia} % для подключения шрифта GOST type A
+\RequirePackage{setspace}	 % отступы между строками
+\RequirePackage{makevar}	 % локально определённые счётчики
+\RequirePackage{minibox}     % для использования команды '\\' внутри makebox
+\RequirePackage{pbox} 		 % для вычисления ширины текста, включающего '\\'
 
 \ProvidesPackage{G2-104-68}
-         [2002/12/12 v0.01 GOST Frames]
+         [2016/04/28 v1.00 GOST Frames]
 
-%%% Настройки для фоновых рамок
-\newcommand\BackgroundPicture[2]{%
- \setlength{\unitlength}{1pt}%
- \put(0,\strip@pt\paperheight){%
- \parbox[t][\paperheight]{\paperwidth}{%
- \vfill
- \hfill\includegraphics[angle=#2]{#1}\hspace{0.5cm}
- \vfill
-}}} %
-\newcommand\BackgroundTitlePicture[2]{%
- \setlength{\unitlength}{1pt}%
- \put(0,\strip@pt\paperheight){%
- \parbox[t][\paperheight]{\paperwidth}{%
- \vfill
- \centering\includegraphics[angle=#2]{#1}\hspace{-1cm}
- \vfill
-}}} %
-
-\newcounter{gostszv}
-\newcounter{gostszvv}
-\newlength{\gostorigline}%
-\newlength{\gostadnomin}%
-\newsavebox{\newgostboxik}%
-
-% Для вывода текста в бокс с указанными координатами углов
-% 1,2 координаты x,y левого нижнего угла, 3,4 правого верхнего угла
-% 5 выравнивание 6 текст
-\def\spbox#1#2#3#4#5#6{%
-  \put(#1,#2){%
-	\setcounter{gostszv}{#3}%
-	\setcounter{gostszvv}{#4}%
-	\setcounter{gostszv}{\value{gostszv}-#1}%
-	\setcounter{gostszvv}{\value{gostszvv}-#2}%
-	\makebox(\value{gostszv},\value{gostszvv})[#5]{#6}%
-	}%
-}
-
-\def\spformedbox#1#2#3#4#5#6{%
-	\setcounter{gostszv}{#3}%
-	\setcounter{gostszvv}{#4}%
-	\setcounter{gostszv}{\value{gostszv}-#1}%
-	\setcounter{gostszvv}{\value{gostszvv}-#2}%
-	\setlength{\gostadnomin}{#3pt - #1pt}%ширина поля
-	{%
-	\sbox{\newgostboxik}{#6}%
-	\settowidth{\gostorigline}{\usebox{\newgostboxik}}%
+%% MACROS \spbox
+%
+% Создаёт \parbox с заданными в мм координатами 
+% и заданного размера, содержащий текст.
+%
+%   #1: x (left, bottom)
+%   #2: y (left, bottom)
+%   #3: x (right, top)
+%   #4: y (right, top)
+%   #5: align
+%   #6: text
+%
+\def\spbox#1#2#3#4#5#6{{%
+	\setlength{\unitlength}{1mm}
 	\put(#1,#2){%
-		\ifthenelse{\lengthtest{\gostorigline<\gostadnomin}}%
-			{\makebox(\value{gostszv},\value{gostszvv})[#5]%
-			{\usebox{\newgostboxik}}}%
-			{\makebox(\value{gostszv},\value{gostszvv})[#5]%
-			{\resizebox{\gostadnomin}{\height}{\usebox{\newgostboxik}}}}%
+		\var{boxwidth}{#3 - #1}%
+		\var{boxheight}{#4 - #2}%
+		%
+		\makebox(\value{\boxwidth},\value{\boxheight})[#5]{#6}%
 	}%
-	}%
-}
-
-% Вывод текста в вертикальный бокс
-\def\vspbox#1#2#3#4#5#6{%
-  \put(#1,#2){%
-	  \setcounter{gostszv}{#3}%
-	  \setcounter{gostszvv}{#4}%
-	  \setcounter{gostszv}{\value{gostszv}-#1}%
-	  \setcounter{gostszvv}{\value{gostszvv}-#2}%
-	  \begin{sideways}%
-	  \makebox(\value{gostszv},\value{gostszvv})[#5]{#6}%
-	  \end{sideways}%
-	}%
-}%
+}}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Нижний колонтитул. Заполняем рамки текстом. 
-% Координаты задаются в pt, соответствующие координатам в просмотре
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+% Шрифт для заполения рамок GOST type A
 \newfontfamily\gostFont[
 	Path = fonts/,
-    Extension = .ttf,
-    Ligatures = TeX,
-    AutoFakeSlant = 0.26
+	Extension = .ttf,
+	Ligatures = TeX,
+	AutoFakeSlant = 0.26
 ]{GostTypeA} %  шрифт для штампов
 
-\newcommand\setGostFont[1]{
-	\textit {\gostFont #1}
+
+%% ENVIRONMENT
+%
+% Выводит текст гарнитурой GOST type A и стилем italic
+%
+\newenvironment{envGostFont}
+	{\itshape\gostFont}
+	{\par}
+
+%% MACROS \gostBox
+%
+% Создаёт \spbox с заданными в мм координатами.
+% Гарнитура по ГОСТу, ширина текста зависит от размера
+% блока, в который он вписан
+%
+%   #1: x (left, bottom)
+%   #2: y (left, bottom)
+%   #3: x (right, top)
+%   #4: y (right, top)
+%   #5: text
+%   #6: text aling
+%	#7: text enviroment
+%
+\newlength{\gostBoxTextLen}
+\newlength{\gostBoxTrueLen}
+\newlength{\gostBoxLen}
+\def\gostBox#1#2#3#4#5#6#7{{
+	%
+	\newenvironment{envGost}{#7\envGostFont}{\par}%
+	%
+	\var{boxWidth}{#3 - #1}%
+	\var{boxHeight}{#4 - #2}%
+	\setlength\gostBoxTextLen{\widthof{\pbox{\textwidth}{#5}}}%
+	\setlength{\gostBoxLen}{\value{\boxWidth}mm - 1.5mm}%  1.5mm - отступ от границ
+	\setlength{\gostBoxTrueLen}{\value{\boxWidth}mm + 14pt}%  14pt - поправочный коэффициент
+	%
+	\ifthenelse{\lengthtest{\gostBoxTextLen > \gostBoxTrueLen}}{%
+		\spbox{#1}{#2}{#3}{#4}{#6}{%
+			\noindent\resizebox{\gostBoxLen}{\height}{%
+				{\envGost%
+					\minibox[#6]{#5}%
+				}%
+			}%	
+		}%
+	}{%
+		\spbox{#1}{#2}{#3}{#4}{#6}{%
+			\noindent\resizebox{!}{!}{%
+				{\envGost%
+					\minibox[#6]{#5}%
+				}%
+			}%	
+		}%
+	}%
+}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Макросы формирующие штампы
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% MACROS \makeSecondSheetFrames
+%
+% Создаёт штамп для второго листа (ГОСТ 2.104)
+%
+\def\makeSecondSheetFrames{%
+\begin{tikzpicture}[remember picture, overlay, x=1mm, y=1mm]%
+	\draw[black, line  width=0.5mm] (25, 5) rectangle (205,292);%
+	\draw[black, line  width=0.5mm] (25, 5) rectangle (205,5+40);%
+	\draw[black, line  width=0.5mm] (25, 5) rectangle (25+65,5+40);%
+	\draw[black, line  width=0.5mm] (25, 5) rectangle (25+65,5+30);%
+	\draw[black, line  width=0.5mm] (25, 5) rectangle (205,5+25);%
+	\foreach \n/\f in {10,15,...,45} {%
+		\draw[black, line  width=0.25mm] (25, 5) rectangle (25+65,\f);%
+	}%
+	\foreach \n/\f in {10,25,48} {%
+		\draw[black, line  width=0.5mm] (25, 5) rectangle (25+65-\f,5+40);%
+	}%
+	\draw[black, line  width=0.5mm] (25, 5+25) rectangle (25+7, 5+40);%
+	%
+	\draw[black, line  width=0.5mm] (205-50, 5) rectangle (205,5+25);%
+	\draw[black, line  width=0.5mm] (205-50, 5) rectangle (205,5+15);%
+	\foreach \n/\f in {0,35,40,45} {%
+		\draw[black, line  width=0.5mm] (205-50, 5+15) rectangle (205-\f,5+20);%
+	}%
+	\draw[black, line  width=0.5mm] (205-50, 5+15) rectangle (205-35,5+25);%
+	\draw[black, line  width=0.5mm] (205-50, 5+15) rectangle (205-20,5+25);%
+\end{tikzpicture}%
 }
 
-\let\@oldoddfoot\@oddfoot
-\def\@oddfoot{%
-  \unitlength=1pt
-  \begin{picture}(0,0)(105,82)
-    \renewcommand\Large{\@setfontsize\LARGE{10}{11}}
-	\ifnum \thepage = 1
-    \else
-    \ifnum \thepage = 3
-    % Вторая страница
-		\spbox{539}{66}{594}{79}{c}{\setGostFont{\pageref{LastPage}}}
-		\spbox{496}{66}{537}{79}{c}{\setGostFont{\thepage}}
-		\spformedbox{118}{77}{184}{93}{l}{\hspace{1mm}\textsl{\small\setGostFont\@gostrazrabotchik}}
-		\spformedbox{118}{62}{184}{80}{l}{\hspace{1mm}\textsl{\small\setGostFont\@gostproveril}}
-		\spformedbox{118}{35}{184}{51}{l}{\textsl{\small\setGostFont\@gostnormokontroler}}
-		\spformedbox{118}{20}{184}{37}{l}{\textsl{\small\setGostFont\@gostutverdil}}
-		\spbox{261}{90}{593}{140}{c}{\LARGE{\setGostFont\@gostklgi}}
-		\spbox{258}{22}{444}{99}{c}{\parbox{65mm}{\centering\small{\setGostFont\@gosttitleobject \\ \setGostFont\@gosttitledocument}}}
-		\spbox{504}{19}{540}{69}{c}{\parbox{40mm}{\centering\small{\setGostFont\@gosttitlecompany}}}
-		\spbox{460}{70}{460}{74}{c}{\setGostFont\@gostlitera}
-	\else
-    % Последующие страницы
-		\spbox{523}{22}{553}{45}{c}{\setGostFont{\thepage}}
-		\spbox{558}{22}{590}{45}{c}{\setGostFont{\pageref{LastPage}}}
-		\spbox{227}{22}{564}{65}{c}{\LARGE\setGostFont{\@gostklgi}}
-		\spbox{70}{770}{268}{865}{c}{\LARGE{\rotatebox{180}{\setGostFont\@gostklgi}}}
-	\fi
-    \fi
-  \end{picture}
+%% MACROS \makeOtherSheetFrames
+%
+% Создаёт штамп для остальных листов (ГОСТ 2.104)
+%
+\def\makeOtherSheetFrames{%
+\begin{tikzpicture}[remember picture, overlay, x=1mm, y=1mm]%
+	\draw[black, line  width=0.5mm] (25, 5) rectangle (205,292);%
+	\draw[black, line  width=0.5mm] (25, 292-14) rectangle (25+70,292);%
+	\draw[black, line  width=0.5mm] (25, 5) rectangle (25+65,10);%
+	\draw[black, line  width=0.25mm] (25, 5) rectangle (25+65,15);%
+	\draw[black, line  width=0.5mm] (25, 5) rectangle (205,20);%
+	\draw[black, line  width=0.5mm] (25, 5) rectangle (25+7,20);%
+	\draw[black, line  width=0.5mm] (25, 5) rectangle (25+17,20);%
+	\draw[black, line  width=0.5mm] (25, 5) rectangle (25+40,20);%
+	\draw[black, line  width=0.5mm] (25, 5) rectangle (25+55,20);%
+	\draw[black, line  width=0.5mm] (25, 5) rectangle (25+65,20);%
+	\draw[black, line  width=0.5mm] (25, 5) rectangle (205-10,20);%
+	\draw[black, line  width=0.5mm] (205-10,5) rectangle (205,5+8);%
+\end{tikzpicture}%
 }
+
+%% MACROS \makeSecondSheetStrings
+%
+% Создаёт подписи для второго листа
+% 
+% Границы листа учтены за счёт положения рисунка (picture)
+%
+\def\makeSecondSheetStrings{%
+	\unitlength=1mm%
+	\begin{picture}(205,292)(-25,-5)%
+		\gostBox{0}{25}{7}{30}{\small{Изм.}}{c}{}%
+		\gostBox{7}{25}{17}{30}{\small{Лист}}{c}{}%
+		\gostBox{17}{25}{40}{30}{\small{№ докум.}}{c}{}%
+		\gostBox{40}{25}{55}{30}{\small{Подп.}}{c}{}%
+		\gostBox{55}{25}{65}{30}{\small{Дата}}{c}{}%
+		\gostBox{0}{20}{17}{25}{\small{ Разраб.}}{l}{}%
+		\gostBox{0}{15}{17}{20}{\small{ Пров.}}{l}{}%
+		\gostBox{0}{5}{17}{10}{\small{ Н.контр.}}{l}{}%
+		\gostBox{0}{0}{17}{5}{\small{ Утв.}}{l}{}%
+		\gostBox{130}{20}{145}{25}{\small{Лит.}}{c}{}%
+		\gostBox{145}{20}{160}{25}{\small{Лист}}{c}{}%
+		\gostBox{145}{15}{160}{20}{\small{\thepage}}{c}{}%
+		\gostBox{160}{20}{180}{25}{\small{Листов}}{c}{}%
+		\gostBox{160}{15}{180}{20}{\small{\pageref{LastPage}}}{c}{}%
+		\gostBox{130}{-5}{180}{0}{\small{Формат A4}}{c}{}%
+		\gostBox{65}{-5}{130}{0}{\small{Копировал}}{c}{}%
+		% Пользовательские надписи
+		\gostBox{65}{25}{180}{40}{\Large{\@gostklgi}}{c}{%
+			\rule[0.1\baselineskip]{0pt}{\baselineskip}%
+		}%
+		% Настройки размера заголовка конфигурируются пользователем
+		\gostBox{65}{0}{129}{25}{\@gosttitledocument}{c}{\setstretch{1.5}}%
+		\gostBox{17}{20}{40}{25}{\small{\@gostrazrabotchik}}{l}{}%
+		\gostBox{17}{15}{40}{20}{\small{\@gostproveril}}{l}{}%
+		\gostBox{17}{5}{40}{10}{\small{\@gostnormokontroler}}{l}{}%
+		\gostBox{17}{0}{40}{5}{\small{\@gostutverdil}}{l}{}%
+		% Настройки размера надписи ниже конфигурируются пользователем
+		\gostBox{130}{0}{180}{15}{\@gosttitlecompany}{c}{}%
+		\gostBox{130}{15}{135}{20}{\small{\@gostlitera}}{c}{}%
+		\gostBox{130}{15}{135}{20}{\small{\@gostlitera}}{c}{}%
+		\gostBox{55}{20}{65}{25}{\small{\@gostdate}}{c}{}%
+	\end{picture}%
+}
+
+%% MACROS \makeOtherSheetStrings
+%
+% Создаёт подписи для остальных листов
+%
+% Границы листа учтены за счёт положения рисунка (picture)
+%
+\def\makeOtherSheetStrings{%
+	\unitlength=1mm%
+	\begin{picture}(205,292)(-25,-5)%
+		\gostBox{0}{0}{7}{5}{\small{Изм.}}{c}{}%
+		\gostBox{7}{0}{17}{5}{\small{Лист}}{c}{}%
+		\gostBox{17}{0}{40}{5}{\small{№~докум.}}{c}{}%
+		\gostBox{40}{0}{55}{5}{\small{Подп.}}{c}{}%
+		\gostBox{55}{0}{65}{5}{\small{Дата}}{c}{}%
+		\gostBox{170}{8}{180}{15}{\small{Лист}}{c}{}%
+		\gostBox{170}{0}{180}{8}{\large{\thepage}}{c}{}%
+		\gostBox{130}{-5}{180}{0}{\small{Формат A4}}{c}{}%
+		\gostBox{65}{-5}{130}{0}{\small{Копировал}}{c}{}%
+		\gostBox{0}{273}{70}{287}{\rotatebox{180}{\Large{\@gostklgi}}}{c}{%
+			\rule[-1.1\baselineskip]{0pt}{\baselineskip}%	
+		}%
+		\gostBox{65}{0}{170}{15}{\Large{\@gostklgi}}{c}{%
+			\rule[0.1\baselineskip]{0pt}{\baselineskip}%
+		}%
+	\end{picture}%
+}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% После вывода  каждой страницы выполняем следующий код
-%% Для вывода рамок
+%% После вывода  каждой страницы выполняем следующий
+%% код для вывода штампов
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Убераем ненужную нумерацию, так как нумерация будет в штампах
+\pagestyle{empty}
+
 \def\pathtosharedresource{frames/}
 \EveryShipout{%
-  \ClearShipoutPicture{%
-  \ifnum \thepage = 1
-	% \AddToShipoutPicture{\BackgroundTitlePicture{\pathtosharedresource title_7.eps}{0}}
-  \else
-  \ifnum \thepage = 2
-	% \AddToShipoutPicture{\BackgroundTitlePicture{\pathtosharedresource title_7.eps}{0}}
-  \else
-  \ifnum \thepage = 3
-%параметры второго листа
-	\AddToShipoutPicture{\BackgroundPicture{\pathtosharedresource itmo_frame_1_2}{0}}
-  \else
-%параметры остальных листов
-    \AddToShipoutPicture{\BackgroundPicture{\pathtosharedresource itmo_frame_2_2}{0}}
-  \fi
-  \fi
+	%
+	\renewcommand\small{\@setfontsize\small{3.5mm}{4.2mm}\selectfont}%
+	\renewcommand\large{\@setfontsize\large{5mm}{6mm}\selectfont}%
+	\renewcommand\Large{\@setfontsize\Large{7mm}{8.4mm}\selectfont}%
+	\renewcommand\LARGE{\@setfontsize\LARGE{10mm}{12mm}\selectfont}%
+	%
+	\ClearShipoutPicture{%
+		\ifnum \thepage = 3
+			\AddToShipoutPicture{%
+				% Штамп для второго листа
+				\makeSecondSheetFrames%
+				% Подписи для второго листа
+				\makeSecondSheetStrings%
+			}%
+		\else
+			\AddToShipoutPicture{%
+				% Штамп для остальных листов
+				\makeOtherSheetFrames%
+				% Подписи для остальных листов
+				\makeOtherSheetStrings
+			}%
+		\fi%
+	}%
 }%
-}
 \let\@evenfoot\@oddfoot
 \let\@evenhead\@oddhead
+\endinput

@@ -1,4 +1,4 @@
-\documentclass[a4paper]{article}
+\documentclass[a4paper,14pt]{article}
 
 \usepackage{polyglossia}  % многоязычная вёрстка
 
@@ -47,15 +47,22 @@
 	\titleDegree{бакалавр техники и технологии}
 	\titleСhief{Специализация}
 	\titleSubDepartment{КСУИ}
-	\gostklgi{КСУИ.0144147.001 ПЗ}
-	\gostrazrabotchik{Фамилия И.О}  % студента
-	\gostproveril{Фамилия И.О.}  % проверяющего
-	\gostnormokontroler{}
-	\gostutverdil{}
-	\gosttitledocument{Большое и труднопроизносимое, для пущей важности, название работы}
-	\gosttitlecompany{СПбГУ ИТМО\\Кафедра СУИ}
+	\gostklgi{КСУИ.0144147.001 ПЗ}		% шифр
+	\gostrazrabotchik{Фамилия И.О.}  	% студент
+	\gostproveril{Фамилия И.О.}  		% проверяющий
+	\gostnormokontroler{Фамилия И.О.}	% н.контр.
+	\gostutverdil{Фамилия И.О.}			% утв.
+	\gosttitledocument{%				%название наботы
+		\Large{Длинное название}\\%
+		\Large{на нескольких строках}\\%
+		\large{и маленькая подпись}%
+	}
+	\gosttitlecompany{%
+		\large{Университет ИТМО}\\%		% организация
+		\large{Кафедра СУИ, гр. X6666}	% кафдра, группа
+	}
 	\gostlitera{д}  % буква в таблице, ставится только в дипломной работе, в УИРС не надо
-	\date{}
+	\gostdate{01.01.16}
 
 \makeatother
 
