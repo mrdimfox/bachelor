@@ -112,18 +112,18 @@
 %
 \def\makeSecondSheetFrames{%
 \begin{tikzpicture}[remember picture, overlay, x=1mm, y=1mm]%
-	\draw[black, line  width=0.5mm] (25, 5) rectangle (205,292);%
-	\draw[black, line  width=0.5mm] (25, 5) rectangle (205,5+40);%
-	\draw[black, line  width=0.5mm] (25, 5) rectangle (25+65,5+40);%
-	\draw[black, line  width=0.5mm] (25, 5) rectangle (25+65,5+30);%
-	\draw[black, line  width=0.5mm] (25, 5) rectangle (205,5+25);%
+	\draw[black, line  width=0.5mm] (20, 5) rectangle (205,292);%
+	\draw[black, line  width=0.5mm] (20, 5) rectangle (205,5+40);%
+	\draw[black, line  width=0.5mm] (20, 5) rectangle (20+65,5+40);%
+	\draw[black, line  width=0.5mm] (20, 5) rectangle (20+65,5+30);%
+	\draw[black, line  width=0.5mm] (20, 5) rectangle (205,5+25);%
 	\foreach \n/\f in {10,15,...,45} {%
-		\draw[black, line  width=0.25mm] (25, 5) rectangle (25+65,\f);%
+		\draw[black, line  width=0.25mm] (20, 5) rectangle (20+65,\f);%
 	}%
 	\foreach \n/\f in {10,25,48} {%
-		\draw[black, line  width=0.5mm] (25, 5) rectangle (25+65-\f,5+40);%
+		\draw[black, line  width=0.5mm] (20, 5) rectangle (20+65-\f,5+40);%
 	}%
-	\draw[black, line  width=0.5mm] (25, 5+25) rectangle (25+7, 5+40);%
+	\draw[black, line  width=0.5mm] (20, 5+25) rectangle (20+7, 5+40);%
 	%
 	\draw[black, line  width=0.5mm] (205-50, 5) rectangle (205,5+25);%
 	\draw[black, line  width=0.5mm] (205-50, 5) rectangle (205,5+15);%
@@ -141,17 +141,17 @@
 %
 \def\makeOtherSheetFrames{%
 \begin{tikzpicture}[remember picture, overlay, x=1mm, y=1mm]%
-	\draw[black, line  width=0.5mm] (25, 5) rectangle (205,292);%
-	\draw[black, line  width=0.5mm] (25, 292-14) rectangle (25+70,292);%
-	\draw[black, line  width=0.5mm] (25, 5) rectangle (25+65,10);%
-	\draw[black, line  width=0.25mm] (25, 5) rectangle (25+65,15);%
-	\draw[black, line  width=0.5mm] (25, 5) rectangle (205,20);%
-	\draw[black, line  width=0.5mm] (25, 5) rectangle (25+7,20);%
-	\draw[black, line  width=0.5mm] (25, 5) rectangle (25+17,20);%
-	\draw[black, line  width=0.5mm] (25, 5) rectangle (25+40,20);%
-	\draw[black, line  width=0.5mm] (25, 5) rectangle (25+55,20);%
-	\draw[black, line  width=0.5mm] (25, 5) rectangle (25+65,20);%
-	\draw[black, line  width=0.5mm] (25, 5) rectangle (205-10,20);%
+	\draw[black, line  width=0.5mm] (20, 5) rectangle (205,292);%
+	\draw[black, line  width=0.5mm] (20, 292-14) rectangle (20+70,292);%
+	\draw[black, line  width=0.5mm] (20, 5) rectangle (20+65,10);%
+	\draw[black, line  width=0.25mm] (20, 5) rectangle (20+65,15);%
+	\draw[black, line  width=0.5mm] (20, 5) rectangle (205,20);%
+	\draw[black, line  width=0.5mm] (20, 5) rectangle (20+7,20);%
+	\draw[black, line  width=0.5mm] (20, 5) rectangle (20+17,20);%
+	\draw[black, line  width=0.5mm] (20, 5) rectangle (20+40,20);%
+	\draw[black, line  width=0.5mm] (20, 5) rectangle (20+55,20);%
+	\draw[black, line  width=0.5mm] (20, 5) rectangle (20+65,20);%
+	\draw[black, line  width=0.5mm] (20, 5) rectangle (205-10,20);%
 	\draw[black, line  width=0.5mm] (205-10,5) rectangle (205,5+8);%
 \end{tikzpicture}%
 }
@@ -164,7 +164,7 @@
 %
 \def\makeSecondSheetStrings{%
 	\unitlength=1mm%
-	\begin{picture}(205,292)(-25,-5)%
+	\begin{picture}(205,292)(-20,-5)%
 		\gostBox{0}{25}{7}{30}{\small{Изм.}}{c}{}%
 		\gostBox{7}{25}{17}{30}{\small{Лист}}{c}{}%
 		\gostBox{17}{25}{40}{30}{\small{№ докум.}}{c}{}%
@@ -174,27 +174,26 @@
 		\gostBox{0}{15}{17}{20}{\small{ Пров.}}{l}{}%
 		\gostBox{0}{5}{17}{10}{\small{ Н.контр.}}{l}{}%
 		\gostBox{0}{0}{17}{5}{\small{ Утв.}}{l}{}%
-		\gostBox{130}{20}{145}{25}{\small{Лит.}}{c}{}%
-		\gostBox{145}{20}{160}{25}{\small{Лист}}{c}{}%
-		\gostBox{145}{15}{160}{20}{\small{\thepage}}{c}{}%
-		\gostBox{160}{20}{180}{25}{\small{Листов}}{c}{}%
-		\gostBox{160}{15}{180}{20}{\small{\pageref{LastPage}}}{c}{}%
-		\gostBox{130}{-5}{180}{0}{\small{Формат A4}}{c}{}%
-		\gostBox{65}{-5}{130}{0}{\small{Копировал}}{c}{}%
+		\gostBox{135}{20}{150}{25}{\small{Лит.}}{c}{}%
+		\gostBox{150}{20}{165}{25}{\small{Лист}}{c}{}%
+		\gostBox{150}{15}{165}{20}{\small{\thepage}}{c}{}%
+		\gostBox{165}{20}{185}{25}{\small{Листов}}{c}{}%
+		\gostBox{165}{15}{185}{20}{\small{\pageref{LastPage}}}{c}{}%
+		\gostBox{135}{-5}{185}{0}{\small{Формат A4}}{c}{}%
+		\gostBox{65}{-5}{135}{0}{\small{Копировал}}{c}{}%
 		% Пользовательские надписи
-		\gostBox{65}{25}{180}{40}{\Large{\@gostklgi}}{c}{%
+		\gostBox{65}{25}{185}{40}{\Large{\@gostklgi}}{c}{%
 			\rule[0.1\baselineskip]{0pt}{\baselineskip}%
 		}%
 		% Настройки размера заголовка конфигурируются пользователем
-		\gostBox{65}{0}{129}{25}{\@gosttitledocument}{c}{\setstretch{1.1}}%
+		\gostBox{65}{0}{135}{25}{\@gosttitledocument}{c}{\setstretch{1.1}}%
 		\gostBox{17}{20}{40}{25}{\small{\@gostrazrabotchik}}{l}{}%
 		\gostBox{17}{15}{40}{20}{\small{\@gostproveril}}{l}{}%
 		\gostBox{17}{5}{40}{10}{\small{\@gostnormokontroler}}{l}{}%
 		\gostBox{17}{0}{40}{5}{\small{\@gostutverdil}}{l}{}%
 		% Настройки размера надписи ниже конфигурируются пользователем
-		\gostBox{130}{0}{180}{15}{\@gosttitlecompany}{c}{\setstretch{1}}%
-		\gostBox{130}{15}{135}{20}{\small{\@gostlitera}}{c}{}%
-		\gostBox{130}{15}{135}{20}{\small{\@gostlitera}}{c}{}%
+		\gostBox{135}{0}{185}{15}{\@gosttitlecompany}{c}{\setstretch{1}}%
+		\gostBox{135}{15}{140}{20}{\small{\@gostlitera}}{c}{}%
 		\gostBox{55}{20}{65}{25}{\small{\@gostdate}}{c}{}%
 	\end{picture}%
 }
@@ -207,20 +206,20 @@
 %
 \def\makeOtherSheetStrings{%
 	\unitlength=1mm%
-	\begin{picture}(205,292)(-25,-5)%
+	\begin{picture}(205,292)(-20,-5)%
 		\gostBox{0}{0}{7}{5}{\small{Изм.}}{c}{}%
 		\gostBox{7}{0}{17}{5}{\small{Лист}}{c}{}%
 		\gostBox{17}{0}{40}{5}{\small{№~докум.}}{c}{}%
 		\gostBox{40}{0}{55}{5}{\small{Подп.}}{c}{}%
 		\gostBox{55}{0}{65}{5}{\small{Дата}}{c}{}%
-		\gostBox{170}{8}{180}{15}{\small{Лист}}{c}{}%
-		\gostBox{170}{0}{180}{8}{\large{\thepage}}{c}{}%
-		\gostBox{130}{-5}{180}{0}{\small{Формат A4}}{c}{}%
+		\gostBox{175}{8}{185}{15}{\small{Лист}}{c}{}%
+		\gostBox{175}{0}{185}{8}{\large{\thepage}}{c}{}%
+		\gostBox{130}{-5}{185}{0}{\small{Формат A4}}{c}{}%
 		\gostBox{65}{-5}{130}{0}{\small{Копировал}}{c}{}%
 		\gostBox{0}{273}{70}{287}{\rotatebox{180}{\Large{\@gostklgi}}}{c}{%
 			\rule[-1.1\baselineskip]{0pt}{\baselineskip}%	
 		}%
-		\gostBox{65}{0}{170}{15}{\Large{\@gostklgi}}{c}{%
+		\gostBox{65}{0}{175}{15}{\Large{\@gostklgi}}{c}{%
 			\rule[0.1\baselineskip]{0pt}{\baselineskip}%
 		}%
 	\end{picture}%
