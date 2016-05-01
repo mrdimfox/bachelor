@@ -1,21 +1,21 @@
 \NeedsTeXFormat{LaTeX2e}
 
-\RequirePackage{multicol}	% Многоколоночность
-\RequirePackage{textcomp}	% Ввод различных знаков
+\RequirePackage{multicol}	% многоколоночность
+\RequirePackage{textcomp}	% ввод различных знаков
 \RequirePackage{floatflt}
 \RequirePackage{float}
-\RequirePackage{rotating}	% Вращение объектов
-\RequirePackage{calc}		% Для возможности численных расчетов
+\RequirePackage{rotating}	% вращение объектов
+\RequirePackage{calc}		% для возможности численных расчетов
 
 \RequirePackage{ifthen}
-\RequirePackage{geometry}		% Для остановки плавающих объектов
-\RequirePackage{indentfirst}	% Начинать абзацы с красной строки
+\RequirePackage{geometry}		% для остановки плавающих объектов
+\RequirePackage{indentfirst}	% начинать абзацы с красной строки
 \RequirePackage{caption}
 \RequirePackage{longtable}
-\RequirePackage{footnpag}			% Внешний вид сносок
-\RequirePackage[bottom]{footmisc}   % Для установки сносок всегда внизу страницы
-
-\RequirePackage{polyglossia}
+\RequirePackage{footnpag}			% внешний вид сносок
+\RequirePackage[bottom]{footmisc}   % для установки сносок всегда внизу страницы
+\RequirePackage{everypage}	 % вывод на каждой странице
+\RequirePackage{enumitem}	 % для настройки списков
 
 \ProvidesPackage{G2-105-95}
          [2002/12/12 v0.01 General reqs.]
@@ -47,32 +47,48 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Настройки размера страницы
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%FIXME
-\ifnum 1 > 0
-	\geometry{verbose, a4paper, left=20mm, right=5mm, top=5mm, bottom=5mm}
-	\setlength{\headheight}{0pt}
-	\setlength{\headsep}{0pt}
-	\setlength{\topmargin}{0.5cm}
-	\setlength{\textheight}{23.0cm}
-	\setlength{\textwidth}{16cm}
-	\setlength{\oddsidemargin}{0.7cm}
-	\setlength{\evensidemargin}{0pt}
-	\setlength{\marginparsep}{0pt}
-	\setlength{\marginparpush}{0pt}
-	\parindent=15mm
-	\setlength{\leftmargini}{\parindent}
-	\addtolength{\leftmargini}{4mm}
-	\setlength{\headheight}{0pt}
-	\setlength{\headsep}{0pt}
-\else
-	\parindent=15mm  % Абзацный отступ (п.3.6)
-	%\geometry{verbose, a4paper, noheadfoot, left=25mm, right=12mm, height=225mm,bottom=30mm}
-	%\geometry{verbose, a4paper, left=25mm, right=12mm, height=225mm,bottom=30mm}
-	\geometry{verbose, a4paper, left=25mm, right=12mm, height=225mm}
-	\setlength{\headheight}{0pt}
-	\setlength{\headsep}{0pt}
-	\setlength{\topmargin}{-1.0cm}
-\fi
+% Основные отступы
+\geometry{
+	verbose,
+	a4paper,
+	left=25mm,   % 20mm + 5mm
+	right=10mm,   % 5mm + 5mm
+	top=30mm,	 % 20mm + 10mm
+	bottom=30mm  % 20mm + 10mm
+}
+\parindent=15mm
+\AddEverypageHook{%
+	%FIXME
+	\ifnum \thepage = 3%
+		% Только для первой страницы
+		\newgeometry{
+			verbose,
+			a4paper,
+			left=25mm,	 % 20mm + 5mm
+			right=10mm,	 % 5mm + 5mm
+			top=15mm,	 % 5mm + 10mm
+			bottom=55mm  % 45mm + 10mm
+		}
+%	\setlength{\headheight}{0pt}
+%	\setlength{\headsep}{0pt}
+%	\setlength{\topmargin}{0.5cm}
+%	\setlength{\textheight}{23.0cm}
+%	\setlength{\textwidth}{16cm}
+%	\setlength{\oddsidemargin}{0.7cm}
+%	\setlength{\evensidemargin}{0pt}
+%	\setlength{\marginparsep}{0pt}
+%	\setlength{\marginparpush}{0pt}
+%	\setlength{\leftmargini}{\parindent}
+%	\addtolength{\leftmargini}{4mm}
+%	\setlength{\headheight}{0pt}
+%	\setlength{\headsep}{0pt}
+%	\setlength{\oddsidemargin}{3mm}
+%	\setlength{\hoffset}{20mm}
+%	\addtolength{\hoffset}{1in}
+	\else%
+		\restoregeometry%
+	\fi%
+}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -255,15 +271,15 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%Тире в перечислении (ненумерованном списке)
+% Тире в перечислении (ненумерованном списке)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \renewcommand{\labelitemi}{\normalfont\bfseries{--}}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%Сноски со скобкой
+% Сноски со скобкой
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- \renewcommand\thefootnote{\@arabic\c@footnote)}%   
+\renewcommand\thefootnote{\@arabic\c@footnote)}%   
 
 
 % Для выравнивания длинных таблиц
@@ -285,8 +301,8 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%Исключение двусмысленных русских букв из алфавита 
-%для нумерации приложений
+% Исключение двусмысленных русских букв из алфавита 
+% для нумерации приложений
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \def\GostAsbuk#1{\expandafter\@GostAsbuk\csname c@#1\endcsname}                         
 \def\@GostAsbuk#1{\ifcase#1\or                                                      
@@ -297,42 +313,26 @@
 \CYRYA\else\@ctrerr\fi}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%% Далее текст документа %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Настройка ненумерованных списков
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\newenvironment{gostitemize}
-  {\begin{itemize}{}
-	  %\itemsep=-1mm%
-	  \setlength{\itemindent}{\parindent}%
-	  %\addtolength{\itemindent}{5mm}%
-	  %\listparindent=25mm%
-	  %\leftmargin=15mm
-	}
-  {\end{itemize}
+\setlist[itemize,1]{leftmargin=15mm, itemsep=0mm}
+\setlist[itemize,2]{leftmargin=15mm, itemsep=0mm}
+\setlist[itemize,3]{leftmargin=15mm, itemsep=0mm}
 
-}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%% Нумерация списков     %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\renewcommand{\theenumi}{\asbuk{enumi}}
-\renewcommand{\theenumii}{\arabic{enumii}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Настройка нумерованных списков
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Нумерация списков
+\AddEnumerateCounter{\Asbuk}{\@Asbuk}{Ы}
+\AddEnumerateCounter{\asbuk}{\@asbuk}{ы}
+\renewcommand{\theenumi}{\asbuk{enumi})}
+\renewcommand{\theenumii}{\arabic{enumii})}
 \renewcommand\labelenumi{\theenumi}
-\renewcommand\labelenumii{\theenumii} 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%                       %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newenvironment{gostenumerate}
-{\begin{enumerate}{}
-	  %\itemsep=-1mm%
-	  %\partopsep=-2mm%
-	  %\parsep=40mm%
-	  %\topsep=40mm%
-	  %\parskip=40mm%
-	  %\setlength{\itemindent}{\parindent}%
-	  %\addtolength{\itemindent}{5mm}%
-	  %\listparindent=25mm%
-	  %\leftmargin=15mm
-	}
-{\end{enumerate}
-}
+\renewcommand\labelenumii{\theenumii}
+
+\setlist[enumerate,1]{leftmargin=15mm, itemsep=0mm}
+\setlist[enumerate,2]{leftmargin=15mm, itemsep=0mm}
+\setlist[enumerate,3]{leftmargin=15mm, itemsep=0mm}

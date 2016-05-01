@@ -309,41 +309,6 @@
 \renewcommand{\@biblabel}[1]{#1}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%% Взято из bk12.clo и исправлено под наши требования %%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% Настройки для 1-го уровня списка
-\def\@listi{\leftmargin\leftmargini
-	%            \parsep 5\p@  \@plus2.5\p@ \@minus\p@
-	\parsep 0\p@  \@plus2.5\p@ \@minus\p@
-	\topsep 4\p@ \@plus2\p@   \@minus2\p@
-	%				\topsep \z@
-	%            \itemsep1\p@  \@plus2.5\p@ \@minus\p@}
-	\itemsep 1\p@}
-\let\@listI\@listi
-\@listi
-
-% Настройки для 2-го уровня списка
-\def\@listii {\leftmargin\leftmarginii
-	\labelwidth\leftmarginii
-	\advance\labelwidth-\labelsep
-	\topsep    1\p@   \@plus2.5\p@ \@minus\p@
-	%				\topsep \z@
-	\parsep    1\p@ \@plus\p@    \@minus\p@
-	\itemsep   \parsep}
-
-% Настройки для 3-го уровня списка (в ГОСТ не используется)
-\def\@listiii{\leftmargin\leftmarginiii
-	\labelwidth\leftmarginiii
-	\advance\labelwidth-\labelsep
-	%              \topsep    2.5\p@\@plus\p@\@minus\p@
-	\topsep \z@
-	\parsep    \z@
-	\partopsep \p@ \@plus\z@ \@minus\p@
-	\itemsep   \topsep}
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Определение изменений в оформлении приложений
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
