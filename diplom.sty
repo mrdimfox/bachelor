@@ -2,6 +2,7 @@
 \RequirePackage{G2-105-95}
 \RequirePackage{G2-104-68}
 \RequirePackage{cite}
+\RequirePackage{titlesec}
 
 \ProvidesPackage{eskdpz}
          [2002/12/12 v0.01 Unified system for design documentation PZ (???)]
@@ -9,110 +10,17 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Титульный лист
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  \gosttitlecompany{}
-  \gostnormokontroler{}
-  \gostrazrabotchik{}
-  \gostproveril{}
-  \gostklgi{}
-  \gosttitledocument{}
-  \gosttitleobject{~ }
-  \gostgrifutverjdeno{}
-  \gostgrifsoglasovano{}
-  \gostutverdil{}
-  \gostispolnitel{}
-
-  
-% команды формирования титульного листа
-\renewcommand\maketitle{%
-	\begin{titlepage}%
-		\let\footnotesize\small
-		\let\footnoterule\relax
-		\let \footnote \thanks
-		%  \null\vfil
-		\begin{center}
-			%{\LARGE \@gosttitlecompany \par}%
-			%\vskip 1cm
-		\end{center}
-		\par%
-		%{%\raggedleft%
-		\begin{tabular}{l}%
-			\ignorespaces                            
-			%\@gostgrifsoglasovano
-		\end{tabular}                                                                
-		\hfill
-		\begin{tabular}{l}%
-			\ignorespaces                            
-			%\@gostgrifutverjdeno
-		\end{tabular}
-		%\vspace{1.4em}                                                               
-		\par
-		%}
-		%\vskip 60\p@
-		\begin{center}%
-			%\vskip 3em%
-			{\large%
-			\lineskip 6cm%
-			\addtolength{\parskip}{\baselineskip}
-			%      \begin{tabular}[t]{c}%
-			%        \@author
-			%		\par
-			%\LARGE{\@gosttitleobject}
-			\vspace{83mm}
-			\hspace{-1cm}{\@gosttitledocument}
-			\par
-			%\@gostklgi
-			%      \end{tabular}
-			\par
-			}%
-			\vfill
-			\begin{flushleft}
-				%\addtolength{\parskip}{\baselineskip}
-				%исполнители:
-				%\par
-				%\vskip 5pt
-				%\hskip 1cm
-				\parindent=1cm
-				%\setlength{\baselineskip}{2\baselinestretch}
-				\baselineskip=0.8cm
-				\par
-				%\begin{tabular}{l}%
-					
-					%\@gostispolnitel
-				%\end{tabular}
-			\end{flushleft}
-			\vfill
-			\vfill
-			%{\large \@date \par}%
-		\end{center}
-%		\par
-%  \
-%  \@thanks
-%  \vfil\null
-\end{titlepage}%
-  \addtocounter{page}{1}
-  \setcounter{footnote}{0}%
-  \global\let\thanks\relax
-  \global\let\maketitle\relax
-  \global\let\@thanks\@empty
-  \global\let\@author\@empty
-  \global\let\@date\@empty
-%  \global\let\@gosttitlecompany\@empty
-  \global\let\@gostgrifsoglasovano\@empty
-  \global\let\@gostgrifutverjdeno\@empty
-%  \global\let\@gostklgi\@empty
-%  \global\let\@gosttitleobject\@empty
-%  \global\let\@gosttitledocument\@empty
-  \global\let\gostgrifsoglasovano\relax
-  \global\let\gostgrifutverjdeno\relax
-  \global\let\gostklgi\relax
-  \global\let\gosttitleobject\relax
-  \global\let\gosttitledocument\relax
-  \global\let\gosttitlecompany\relax
-  \global\let\gostispolnitel\relax
-  \global\let\author\relax
-  \global\let\date\relax
-  \global\let\and\relax
-}
+\gosttitlecompany{}
+\gostnormokontroler{}
+\gostrazrabotchik{}
+\gostproveril{}
+\gostklgi{}
+\gosttitledocument{}
+\gosttitleobject{~ }
+\gostgrifutverjdeno{}
+\gostgrifsoglasovano{}
+\gostutverdil{}
+\gostispolnitel{}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -218,19 +126,6 @@
 	\interlinepenalty \@M%
 }
 
-%    \def\@seccntformat#1{%
-%	\ifthenelse{\equal{#1}{section}}
-%		{\appendixname ~ \csname the#1\endcsname \quad}
-%		{\csname the#1\endcsname \quad}
-%	\ifnum \z@ < 2
-%		\appendixname\ \csname the#1\endcsname \quad
-%	\else
-%		\csname the#1\endcsname \quad
-%	\fi
-%	}%
-
-%\renewcommand\sectionmark{HIHIHI}
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%% Взято из latex.ltx и исправлено под наши требования %%%%%%
@@ -262,7 +157,6 @@
     \ifnum #2>\c@tocdepth \else
       \addcontentsline{toc}{#1}{%
         \ifnum #2>\c@secnumdepth \else
-%       \ifnum #2>\c@tocdepth \else
           \sectnameintoc{#1}{#2}%
         \fi
         #7}%
@@ -312,33 +206,26 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Определение изменений в оформлении приложений
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \renewcommand\appendix{\par
-	%\addtocounter{tocdepth}{-1}
+
 	\setcounter{tocdepth}{1}
+	\newcommand{\sectionbreak}{\clearpage}
 	
-	\renewcommand{\section}{
-		\renewcommand{\theengost}{\thesection.\@arabic\c@engost}
-		\setcounter{engost}{0}
-		\@startsection{section}
-		{1}
-		{0mm}
-		{-\baselineskip}
-		{\baselineskip}
-		{\newpage\Large\bf\centering}}%
+	\titleformat
+	{\section} % command
+	{\centering\Large\bf} % format
+	{\appendixname~\thesection} % label
+	{0mm} % sep
+	{%
+		\\
+		\centering
+	} % before-code
 	
 	\addtocontents{toc}{\vskip 12pt }
 	
 	\setcounter{section}{0}%
 	\setcounter{subsection}{0}%
-	
-	% Отвечает за представление названия раздела в тексте
-	\renewcommand{\sectname}[2]{%
-		\ifnum ##2 > 1
-			\csname the##1\endcsname\quad
-		\else
-			\appendixname\ \csname the##1\endcsname
-		\fi
-	}
 	
 	% Отвечает за представление названия раздела в содержании
 	\renewcommand{\sectnameintoc}[2]{%
@@ -350,13 +237,13 @@
 	}
 	
 	% Отвечает за перенесение названия раздела на другую строку в приложении
-	\renewcommand{\sectdop}[1]{%
-		\ifnum ##1 > 1
-			%
-		\else
-			\\
-		\fi
-	}
+%	\renewcommand{\sectdop}[1]{%
+%		\ifnum ##1 > 1
+%			%
+%		\else
+%			\\
+%		\fi
+%	}
 	
 	\renewcommand{\thesection}{\GostAsbuk{section}}%
 	
@@ -370,5 +257,13 @@
 	
 	% Нумерация формул с указанием номера приложения
 	\@addtoreset{equation}{section}%                                                   
-	\renewcommand{\theequation}{(\thesection.\arabic{equation})}%
+	\renewcommand{\theequation}{\thesection.\arabic{equation}}%
 }
+
+%\newcommand\appendix@section[1]{%
+%	\refstepcounter{section}%
+%	\orig@section*{\appendixname \@Alph\c@section: #1}%
+%	\addcontentsline{toc}{section}{\appendixname \@Alph\c@section: #1}%
+%}
+%\let\orig@section\section
+%\g@addto@macro\appendix{\let\section\appendix@section}
