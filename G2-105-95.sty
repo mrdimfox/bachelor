@@ -8,9 +8,10 @@
 \RequirePackage{calc}		% для возможности численных расчетов
 
 \RequirePackage{ifthen}
-\RequirePackage{geometry}		% для остановки плавающих объектов
+\RequirePackage{geometry}
 \RequirePackage{indentfirst}	% начинать абзацы с красной строки
-\RequirePackage{caption}
+\RequirePackage{listings}
+\RequirePackage{caption}		% оформление подписей
 \RequirePackage{longtable}
 \RequirePackage{footnpag}			% внешний вид сносок
 \RequirePackage[bottom]{footmisc}   % для установки сносок всегда внизу страницы
@@ -202,6 +203,17 @@
 	labelsep=endash,%
 	font=large%
 }
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Настройка вида листингов
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\renewcommand*{\lstlistingname}{Листинг}
+\DeclareCaptionLabelFormat{listing}{#1 #2}
+\DeclareCaptionLabelFormat{listingAppendix}{#1 \thesection.#2}
+\DeclareCaptionLabelSeparator{dashsep}{~--~}
+\captionsetup[lstlisting]{labelformat=listing, labelsep=dashsep, justification=centering}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

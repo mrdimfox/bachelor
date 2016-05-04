@@ -1,8 +1,10 @@
 \NeedsTeXFormat{LaTeX2e}
 \RequirePackage{G2-105-95}
 \RequirePackage{G2-104-68}
-\RequirePackage{cite}
-\RequirePackage{titlesec}
+\RequirePackage{cite}			% оформление списка литературы
+\RequirePackage{titlesec}		% оформление заголовков
+\RequirePackage{listing}
+\RequirePackage{caption}		% оформление подписей
 
 \ProvidesPackage{diplom}
          [2016/05/03 v0.01 Package provide design Bachelor thesis at the University ITMO]
@@ -258,6 +260,12 @@
 	% Нумерация формул с указанием номера приложения
 	\@addtoreset{equation}{section}%                                                   
 	\renewcommand{\theequation}{\thesection.\arabic{equation}}%
+    
+    % Нумерация листингов с указанием номера приложения
+    %
+    \captionsetup[lstlisting]{labelformat=listingAppendix,%
+                              labelsep=dashsep,%
+                              justification=centering}
 }
 
 %\newcommand\appendix@section[1]{%
