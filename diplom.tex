@@ -75,13 +75,22 @@
 	% Задание
 	% Поэтому сам диплом начинается с третьей страницы
 	\setcounter{page}{3}
+    
 	% Содержание
 	\tableofcontents
-	% Примеры разделов ПЗ
+    
+	% Примеры разделов пояснительной записки
 	\include{introduction} % подцепляет файл intoduction.tex
 	\include{overview}
 	% \include{definition} и т.д создаете столько файлов и разделов, сколько нужно
+    % ...
 	% \include{tests}
 	\include{conclusion}
 	\include{bibliography}
+    
+  	% Приложения
+    \begin{appendix}
+       \include{appendix} % пока не работает слово "Приложение" в содержании
+    \end{appendix}
+        
 \end{document}
