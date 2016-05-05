@@ -262,10 +262,10 @@
 	\renewcommand{\theequation}{\thesection.\arabic{equation}}%
     
     % Нумерация листингов с указанием номера приложения
-    %
-    \captionsetup[lstlisting]{labelformat=listingAppendix,%
-                              labelsep=dashsep,%
-                              justification=centering}
+    \captionsetup[lstlisting]{labelformat=captionAppendix}
+
+    % Нумерация таблиц с указанием номера приложения                  
+    \captionsetup[table]{labelformat=captionAppendix}
 }
 
 %\newcommand\appendix@section[1]{%

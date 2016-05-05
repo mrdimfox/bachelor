@@ -211,9 +211,25 @@
 
 \renewcommand*{\lstlistingname}{Листинг}
 \DeclareCaptionLabelFormat{listing}{#1 #2}
-\DeclareCaptionLabelFormat{listingAppendix}{#1 \thesection.#2}
+\DeclareCaptionLabelFormat{captionAppendix}{#1 \thesection.#2}
 \DeclareCaptionLabelSeparator{dashsep}{~--~}
-\captionsetup[lstlisting]{labelformat=listing, labelsep=dashsep, justification=centering}
+\captionsetup[lstlisting]{labelformat=listing,%
+                          labelsep=dashsep,%
+                          singlelinecheck=off,%
+                          justification=raggedright,
+                          font={stretch=1.2},
+                          aboveskip=3mm}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Настройка подписей к таблице
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\captionsetup[table]{labelsep=dashsep,
+                     singlelinecheck=off,%
+                     justification=raggedright,
+                     font={stretch=1.2},
+                     aboveskip=3mm}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
