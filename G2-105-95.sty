@@ -17,6 +17,7 @@
 \RequirePackage[bottom]{footmisc}   % для установки сносок всегда внизу страницы
 \RequirePackage{everypage}	 % вывод на каждой странице
 \RequirePackage{enumitem}	 % для настройки списков
+\RequirePackage{titlesec}
 
 \ProvidesPackage{G2-105-95}
          [2002/12/12 v0.01 General reqs.]
@@ -25,10 +26,12 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Размеры шрифтов
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\renewcommand\large{\@setfontsize\large{14}{16.8}\selectfont}
+
+\renewcommand\LARGE{\@setfontsize\LARGE{17}{20.4}\selectfont}
 \renewcommand\Large{\@setfontsize\Large{16}{19.2}\selectfont}
+\renewcommand\large{\@setfontsize\large{15}{18}\selectfont}
+\renewcommand\normalsize{\@setfontsize\normalsize{14}{14.4}\selectfont}
 \renewcommand\small{\@setfontsize\small{10}{12}\selectfont}
-\renewcommand\normalsize{\@setfontsize\normalsize{12}{14.4}\selectfont}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -145,52 +148,46 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Переопределение вида разделов
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newlength\labelLength
+\newlength\parIndent
+\setlength{\parIndent}{\parindent}
+\def\labelSpace{8pt}
 
-\renewcommand\section{%                    
-	\renewcommand{\theengost}{\thesection.\@arabic\c@engost}
-	\setcounter{engost}{0}
-	\gostnewpage                    
-	\@startsection{section}{1}{\z@}%
-		{-3.25ex \@plus -1ex \@minus -.2ex}%                                 		
-		{1.5ex\@plus.2ex}%
-		{\normalfont\Large\bfseries}%
-}
-		
-\renewcommand\subsection{%
-	\renewcommand{\theengost}{\thesubsection.\@arabic\c@engost}
-	\setcounter{engost}{0}
-	\@startsection{subsection}{2}{\z@}%
-		{-3.25ex\@plus -1ex \@minus -.2ex}%
-		{1.5ex \@plus .2ex}%
-		{\normalfont\Large}
+
+\def\sectionSpace#1{%
+    \setlength{\labelLength}{%
+        \parIndent - \widthof{#1} - \labelSpace%
+    }%
+    \hskip \labelLength%    
 }
 
-\renewcommand\subsubsection{%
-	\renewcommand{\theengost}{\thesubsubsection.\@arabic\c@engost}%
-	\setcounter{engost}{0}%
-	\@startsection{subsubsection}{3}{\z@}%
-		{-3.25ex\@plus -1ex \@minus -.2ex}%
-		{1.5ex \@plus .2ex}%
-		{\normalfont\large}%
-}
+\def\sectionLabel{\thesection.}
+\def\subsectionLabel{\thesubsection.}
+\def\subsubsectionLabel{\thesubsubsection.}
 
-\renewcommand\paragraph{%
-	\renewcommand{\theengost}{\theparagraph.\@arabic\c@engost}
-	\setcounter{engost}{0}
-	\@startsection{paragraph}{4}{\parindent}%
-		{3.25ex \@plus1ex \@minus.2ex}%
-		{-1em}%
-		{\normalfont\normalsize\bfseries}
-}
+\titleformat{\section}[block]
+    {\bfseries\Large}
+    {\sectionSpace{\sectionLabel}\sectionLabel}
+    {\labelSpace}
+    {}
 
-\renewcommand\subparagraph{%
-	\renewcommand{\theengost}{\thesubparagraph.\@arabic\c@engost}
-	\setcounter{engost}{0}
-	\@startsection{subparagraph}{5}{\parindent}%
-		{3.25ex \@plus1ex \@minus .2ex}%
-		{-1em}%
-		{\normalfont\normalsize\bfseries}
-}
+\titleformat{\subsection}[block]
+    {\bfseries\large}
+    {\sectionSpace{\subsectionLabel}\subsectionLabel}
+    {\labelSpace}
+    {}
+
+\titleformat{\subsubsection}[block]
+    {\bfseries}
+    {\sectionSpace{\subsubsectionLabel}\subsubsectionLabel}
+    {\labelSpace}
+    {}
+    
+\titleformat{name=\section,numberless}[block]
+    {\bfseries\Large}
+    {}
+    {0pt}
+    {\hspace{\parIndent}}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
