@@ -261,7 +261,13 @@
 % Определение изменений в оформлении приложений
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\newcommand{\usebetterlinkanchor}[1]{%
+    \gdef\Hy@chapapp{#1}%
+}
+
 \renewcommand\appendix{\par
+    
+    \usebetterlinkanchor{appendixchapters}
 
 	\setcounter{tocdepth}{1}
 	\newcommand{\sectionbreak}{\clearpage}
