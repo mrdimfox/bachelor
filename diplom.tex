@@ -1,8 +1,6 @@
 \documentclass{article}
 
 \usepackage{polyglossia}  % многоязычная вёрстка
-
-\usepackage{diplom}		  % штампы, настройки шрифтов и прочее для диплома
 \usepackage{makecell}	  % для работы с выравниваем в таблицах
 \usepackage{multirow}     % разбивка ячейки на несколько рядов
 \usepackage{ulem}		  % различные виды подчёркиваний
@@ -12,6 +10,17 @@
 
 % Расширенные наборы математических символов
 \usepackage{amssymb,amsmath,amsfonts,latexsym,unicode-math}
+
+% Всё для библиографии
+\usepackage[
+    backend=biber,
+    style=gost-numeric,				% стиль оформления библиографии
+    language=auto
+]{biblatex}							% основной пакет для работы с библиографией
+\usepackage{csquotes}	  			% умные кавычки
+\addbibresource{bibliography.bib}	% файл с библиографией
+
+\usepackage{diplom}		  % штампы, настройки шрифтов и прочее для диплома
 
 % Устанавливает главный язык документа
 \setdefaultlanguage[spelling=modern,numerals=cyrillic]{russian}
@@ -24,7 +33,6 @@
 \setmainfont[Ligatures=TeX]{Times New Roman}  % основной шрифт документа
 \setsansfont{PT Sans}  % шрифт без засечек
 \setmonofont{Consolas}  % моноширинный шрифт
-
 
 \makeatletter
 
@@ -66,9 +74,6 @@
 
 
 \begin{document}
-	% Переменование "Список литературы" в "Литература"
-	\renewcommand{\refname}{Литература}
-	
 	% Первая страница это Титульный лист
 	% \maketitle команда отключена, так как титульный лист дается на кафедре
 	% Вторая страница это задание
@@ -86,7 +91,13 @@
     % ...
 	% \include{tests}
 	\include{conclusion}
-	\include{bibliography}
+    
+    % Выводим библиогафию
+    % Для правильной работы библиографии неоходимо запустить
+    % сначала XeLaTeX, затем Biber, затем снова XeLaTeX
+    % В файле библиографии .bib должно обязательно присутсвовать поле 
+    % language для правильной сортировки
+    \include{bibliography}
     
   	% Приложения
     \begin{appendix}

@@ -16,6 +16,7 @@ Forked from [vedyakov/bachelor](https://github.com/vedyakov/bachelor). Remaded f
 # TODO:
 * [x] make text in frames with variable width, depends on box width;
 * [x] make font size in frames like GOST says;
-* [ ] make GOST headings (section, subsection, etc.);
+* [x] make GOST headings (section, subsection, etc.);
 * [ ] clean styles;
+* [x] make bibliography;
 * [ ] all other stuff.

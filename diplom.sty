@@ -1,10 +1,10 @@
 \NeedsTeXFormat{LaTeX2e}
-\RequirePackage{G2-105-95}
-\RequirePackage{G2-104-68}
-\RequirePackage{cite}			% оформление списка литературы
+\RequirePackage{G2-105-95}		% штампы
+\RequirePackage{G2-104-68}		% разное ГОСТовское барахло
 \RequirePackage{titlesec}		% оформление заголовков
-\RequirePackage{listing}
+\RequirePackage{listing}		% оформление списков
 \RequirePackage{caption}		% оформление подписей
+\RequirePackage{biblatex}		% библиография
 
 \ProvidesPackage{diplom}
          [2016/05/03 v0.01 Package provide design Bachelor thesis at the University ITMO]
@@ -206,7 +206,59 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%Определение изменений в оформлении приложений
+% Правильная сортировака библиографии
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Для макроса ниже обязательно должно быть заполнено поле language
+% и не заполенено presort.
+%\DeclareSourcemap{
+%    \maps[datatype=bibtex]{
+%        \map{
+%            \step[fieldsource=language, match=russian, final]
+%            \step[fieldset=presort, fieldvalue={a}]
+%        }
+%        \map{
+%            \step[fieldsource=language, notmatch=russian, final]
+%            \step[fieldset=presort, fieldvalue={z}]
+%        }
+%    }
+%}
+
+\DeclareSourcemap{
+    \maps[datatype=bibtex]{
+        \map{
+            \step[fieldset=language, fieldvalue={tempruorder}]
+        }
+        \map[overwrite]{
+            \step[fieldsource=language, match=russian, final]
+            \step[fieldsource=presort, 
+            match=\regexp{(.+)}, 
+            replace=\regexp{aa$1}]
+        }
+        \map{
+            \step[fieldsource=language, match=russian, final]
+            \step[fieldset=presort, fieldvalue={az}]
+        }
+        \map[overwrite]{
+            \step[fieldsource=language, notmatch=russian, final]
+            \step[fieldsource=presort, 
+            match=\regexp{(.+)}, 
+            replace=\regexp{za$1}]
+        }
+        \map{
+            \step[fieldsource=language, notmatch=russian, final]
+            \step[fieldset=presort, fieldvalue={zz}]
+        }
+        \map{
+            \step[fieldsource=language, match={tempruorder}, final]
+            \step[fieldset=language, null]
+        }
+    }
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Определение изменений в оформлении приложений
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \renewcommand\appendix{\par
