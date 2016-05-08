@@ -5,6 +5,8 @@
 \RequirePackage{listing}		% оформление списков
 \RequirePackage{caption}		% оформление подписей
 \RequirePackage{biblatex}		% библиография
+\RequirePackage[titletoc]{appendix} % для приложений
+\RequirePackage{chngcntr}
 
 \ProvidesPackage{diplom}
          [2016/05/03 v0.01 Package provide design Bachelor thesis at the University ITMO]
@@ -265,64 +267,109 @@
     \gdef\Hy@chapapp{#1}%
 }
 
-\renewcommand\appendix{\par
-      
-    \usebetterlinkanchor{appendixchapters}
-
-	\setcounter{tocdepth}{1}
-	\newcommand{\sectionbreak}{\clearpage}
-	
-	\titleformat
-	{\section} % command
-	{\centering\Large\bf} % format
-	{\appendixname~\thesection} % label
-	{0mm} % sep
-	{%
-		\\
-		\centering
-	} % before-code
-	
-	\setcounter{section}{0}%
-	\setcounter{subsection}{0}%
-	
-	% Отвечает за представление названия раздела в содержании
-	\renewcommand{\sectnameintoc}[2]{%
-		\ifnum ##2 > 1
-			\protect\numberline{\csname the##1\endcsname}%
-		\else
-			\protect\appendixname\ \numberline{\csname the##1\endcsname}
-		\fi
-	}
-	
-	% Отвечает за перенесение названия раздела на другую строку в приложении
-%	\renewcommand{\sectdop}[1]{%
-%		\ifnum ##1 > 1
-%			%
-%		\else
-%			\\
-%		\fi
-%	}
-	
-	\renewcommand{\thesection}{\GostAsbuk{section}}%
-	
-	% Нумерация рисунков с указанием номера приложения
-	\@addtoreset{figure}{section}%                                                   
-	\renewcommand{\thefigure}{\thesection.\arabic{figure}}%
-	
-	% Нумерация таблиц с указанием номера приложения
-	\@addtoreset{table}{section}%                                                   
-	\renewcommand{\thetable}{\thesection.\arabic{table}}%
-	
-	% Нумерация формул с указанием номера приложения
-	\@addtoreset{equation}{section}%                                                   
-	\renewcommand{\theequation}{\thesection.\arabic{equation}}%
-    
-    % Нумерация листингов с указанием номера приложения
-    \captionsetup[lstlisting]{labelformat=captionAppendix}
-
-    % Нумерация таблиц с указанием номера приложения                  
-    \captionsetup[table]{labelformat=captionAppendix}
+% Среда для использования приложений
+\newenvironment{appendicesGost}{%
+    % Раздел приложения
+    \newcommand{\appendixSection}[1]{
+        \refstepcounter{section}
+        \section*{##1}
+        \addcontentsline{toc}{section}{\GostAsbuk{section}}
+    }
+    \begin{appendices}%
+        \usebetterlinkanchor{appendixchapters}%
+        \newcommand{\sectionbreak}{\clearpage}%
+       	\setcounter{section}{0}%
+       	\setcounter{subsection}{0}%
+        \titleformat
+            {\section} % command
+            {\centering\Large\bf} % format
+            {\appendixname~\GostAsbuk{section}} % label
+            {0mm} % sep
+            {%
+                \\
+                \centering
+            } % before-code
+        \titleformat
+            {name=\section,numberless} % command
+            {\centering\Large\bf} % format
+            {\appendixname~\GostAsbuk{section}} % label
+            {0mm} % sep
+            {%
+                \\
+                \centering
+            } % before-code
+        % Нумерация рисунков с указанием номера приложения
+        \counterwithin{figure}{section}%
+        \renewcommand{\thefigure}{\GostAsbuk{section}.\arabic{figure}}%
+        % Нумерация формул с указанием номера приложения
+        \counterwithin{equation}{section}%
+        \renewcommand{\theequation}{\GostAsbuk{section}.\arabic{equation}}%
+        % Нумерация листингов с указанием номера приложения
+        \counterwithin{listing}{section}%
+        \captionsetup[lstlisting]{labelformat=captionAppendix}%
+        % Нумерация таблиц с указанием номера приложения
+        \counterwithin{table}{section}%
+        \captionsetup[table]{labelformat=captionAppendix}%
+        \setcounter{tocdepth}{1}%
+}{%
+    \end{appendices}%
+    \par%
 }
+
+
+%\renewcommand\appendix{\par
+%      
+%    \usebetterlinkanchor{appendixchapters}
+%
+%	\setcounter{tocdepth}{1}
+%	\newcommand{\sectionbreak}{\clearpage}
+%	
+%	\titleformat
+%	{\section} % command
+%	{\centering\Large\bf} % format
+%	{\appendixname~\GostAsbuk{section}} % label
+%	{0mm} % sep
+%	{%
+%		\\
+%		\centering
+%	} % before-code
+%    \renewcommand{\thesection}{\appendixname~\GostAsbuk{section}}%
+%	
+%	\setcounter{section}{0}%
+%	\setcounter{subsection}{0}%
+%	
+%	% Отвечает за представление названия раздела в содержании
+%%	\renewcommand{\sectnameintoc}[2]{%
+%%		\ifnum ##2 > 1
+%%			\protect\numberline{\csname the##1\endcsname}%
+%%		\else
+%%			\protect\appendixname\ \numberline{\csname the##1\endcsname}
+%%		\fi
+%%	}
+%	
+%	% Отвечает за перенесение названия раздела на другую строку в приложении
+%%	\renewcommand{\sectdop}[1]{%
+%%		\ifnum ##1 > 1
+%%			%
+%%		\else
+%%			\\
+%%		\fi
+%%	}
+%	
+%	% Нумерация рисунков с указанием номера приложения
+%	\@addtoreset{figure}{section}%       
+%	\renewcommand{\thefigure}{\GostAsbuk{section}.\arabic{figure}}%
+%	
+%	% Нумерация формул с указанием номера приложения
+%	\@addtoreset{equation}{section}%
+%	\renewcommand{\theequation}{\GostAsbuk{section}.\arabic{equation}}%
+%    
+%    % Нумерация листингов с указанием номера приложения
+%    \captionsetup[lstlisting]{labelformat=captionAppendix}
+%
+%    % Нумерация таблиц с указанием номера приложения                  
+%    \captionsetup[table]{labelformat=captionAppendix}
+%}
 
 %\newcommand\appendix@section[1]{%
 %	\refstepcounter{section}%
