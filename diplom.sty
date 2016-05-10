@@ -2,6 +2,7 @@
 \RequirePackage{G2-105-95}		% штампы
 \RequirePackage{G2-104-68}		% разное ГОСТовское барахло
 \RequirePackage{titlesec}		% оформление заголовков
+\RequirePackage{titletoc}		% оформление содержания
 \RequirePackage{listing}		% оформление списков
 \RequirePackage{caption}		% оформление подписей
 \RequirePackage{biblatex}		% библиография
@@ -30,6 +31,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Центрирование содержания
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \renewcommand\tableofcontents{%
 \clearpage
 \begin{center}
@@ -42,6 +44,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Вид строчек в содержании
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \newcommand*\l@sectionx[2]{%
   \ifnum \c@tocdepth >\z@
     \addpenalty\@secpenalty
@@ -109,6 +112,9 @@
     \endgroup
   \fi
 }
+
+% Вид подразделов в содержании
+\dottedcontents{subsection}[15mm]{}{2em}{7pt}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
