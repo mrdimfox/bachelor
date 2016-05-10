@@ -13,9 +13,11 @@
 
 % Всё для библиографии
 \usepackage[
-    backend=biber,
-    style=gost-numeric,				% стиль оформления библиографии
-    language=auto
+    backend=biber,%
+    style=gost-numeric,%
+    language=auto,%
+    sorting=none,%
+    autolang=other
 ]{biblatex}							% основной пакет для работы с библиографией
 \usepackage{csquotes}	  			% умные кавычки
 \addbibresource{bibliography.bib}	% файл с библиографией
@@ -96,7 +98,7 @@
     % Для правильной работы библиографии неоходимо запустить
     % сначала XeLaTeX, затем Biber, затем снова XeLaTeX
     % В файле библиографии .bib должно обязательно присутсвовать поле 
-    % language для правильной сортировки
+    % langid для правильной сортировки
     \include{bibliography}
     
   	% Приложения
