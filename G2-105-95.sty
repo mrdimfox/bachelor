@@ -49,6 +49,8 @@
 % Настройки размера страницы
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Основные отступы
+\parindent=15mm
+
 \ifmypackage@geometry
     \geometry{
         a4paper,
@@ -57,7 +59,6 @@
     	top=30mm,	 % 20mm + 10mm
     	bottom=30mm  % 20mm + 10mm
     }
-    \parindent=15mm
     \AddEverypageHook{%
     	\ifnum \thepage = 3%
     		% Только для первой страницы
