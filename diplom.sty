@@ -1,16 +1,37 @@
 \NeedsTeXFormat{LaTeX2e}
-\RequirePackage{G2-105-95}		% штампы
-\RequirePackage{G2-104-68}		% разное ГОСТовское барахло
+
+\ProvidesPackage{diplom}
+         [2016/05/03 v0.01 Package provide design Bachelor thesis at the University ITMO]
+	
 \RequirePackage{titlesec}		% оформление заголовков
 \RequirePackage{titletoc}		% оформление содержания
 \RequirePackage{listing}		% оформление списков
 \RequirePackage{caption}		% оформление подписей
 \RequirePackage{biblatex}		% библиография
 \RequirePackage[titletoc]{appendix} % для приложений
-\RequirePackage{chngcntr}
+\RequirePackage{chngcntr}  
 
-\ProvidesPackage{diplom}
-         [2016/05/03 v0.01 Package provide design Bachelor thesis at the University ITMO]
+\newif\ifmypackage@gostFrames
+
+\DeclareOption{gostFrames}{
+    \mypackage@gostFramestrue
+}
+\DeclareOption{noGostFrames}{
+   \mypackage@gostFramesfalse
+}
+
+\ExecuteOptions{gostFrames}
+
+\ProcessOptions\relax
+
+
+\ifmypackage@gostFrames
+    \RequirePackage{G2-105-95} % разное ГОСТовское барахло
+    \RequirePackage{G2-104-68} % штампы и рамка
+\else
+    \RequirePackage[noframes]{G2-104-68}
+    \RequirePackage[nogeometry]{G2-105-95}
+\fi
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Титульный лист
@@ -384,3 +405,5 @@
 %}
 %\let\orig@section\section
 %\g@addto@macro\appendix{\let\section\appendix@section}
+
+\endinput

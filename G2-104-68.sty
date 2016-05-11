@@ -15,6 +15,19 @@
 \ProvidesPackage{G2-104-68}
          [2016/04/28 v1.00 GOST Frames]
 
+\newif\ifmypackage@frames
+\DeclareOption{frames}{
+    \mypackage@framestrue
+}
+   
+\DeclareOption{noframes}{
+   \mypackage@framesfalse
+}         
+
+\ExecuteOptions{frames}
+
+\ProcessOptions\relax
+
 %% MACROS \spbox
 %
 % Создаёт \parbox с заданными в мм координатами 
@@ -231,32 +244,33 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Убераем ненужную нумерацию, так как нумерация будет в штампах
-\pagestyle{empty}
-
-\def\pathtosharedresource{frames/}
-\EveryShipout{%
-	%
-	\renewcommand\small{\@setfontsize\small{3.5mm}{4.2mm}\selectfont}%
-	\renewcommand\large{\@setfontsize\large{5mm}{6mm}\selectfont}%
-	\renewcommand\Large{\@setfontsize\Large{7mm}{8.4mm}\selectfont}%
-	\renewcommand\LARGE{\@setfontsize\LARGE{10mm}{12mm}\selectfont}%
-	%
-	\ClearShipoutPicture{%
-		\ifnum \thepage = 3
-			\AddToShipoutPicture{%
-				% Штамп для второго листа
-				\makeSecondSheetFrames%
-				% Подписи для второго листа
-				\makeSecondSheetStrings%
-			}%
-		\else
-			\AddToShipoutPicture{%
-				% Штамп для остальных листов
-				\makeOtherSheetFrames%
-				% Подписи для остальных листов
-				\makeOtherSheetStrings
-			}%
-		\fi%
-	}%
-}%
+\ifmypackage@frames
+    \pagestyle{empty}
+    
+    \EveryShipout{%
+    	%
+    	\renewcommand\small{\@setfontsize\small{3.5mm}{4.2mm}\selectfont}%
+    	\renewcommand\large{\@setfontsize\large{5mm}{6mm}\selectfont}%
+    	\renewcommand\Large{\@setfontsize\Large{7mm}{8.4mm}\selectfont}%
+    	\renewcommand\LARGE{\@setfontsize\LARGE{10mm}{12mm}\selectfont}%
+    	%
+    	\ClearShipoutPicture{%
+    		\ifnum \thepage = 3
+    			\AddToShipoutPicture{%
+    				% Штамп для второго листа
+    				\makeSecondSheetFrames%
+    				% Подписи для второго листа
+    				\makeSecondSheetStrings%
+    			}%
+    		\else
+    			\AddToShipoutPicture{%
+    				% Штамп для остальных листов
+    				\makeOtherSheetFrames%
+    				% Подписи для остальных листов
+    				\makeOtherSheetStrings
+    			}%
+    		\fi%
+    	}%
+    }%
+\fi
 \endinput

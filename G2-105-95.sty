@@ -1,12 +1,14 @@
 \NeedsTeXFormat{LaTeX2e}
 
+\ProvidesPackage{G2-105-95}
+         [2002/12/12 v0.01 General reqs.]
+
 \RequirePackage{multicol}	% многоколоночность
 \RequirePackage{textcomp}	% ввод различных знаков
 \RequirePackage{floatflt}
 \RequirePackage{float}
 \RequirePackage{rotating}	% вращение объектов
 \RequirePackage{calc}		% для возможности численных расчетов
-
 \RequirePackage{ifthen}
 \RequirePackage{geometry}
 \RequirePackage{indentfirst}	% начинать абзацы с красной строки
@@ -17,11 +19,20 @@
 \RequirePackage[bottom]{footmisc}   % для установки сносок всегда внизу страницы
 \RequirePackage{everypage}	 % вывод на каждой странице
 \RequirePackage{enumitem}	 % для настройки списков
-\RequirePackage{titlesec}
+\RequirePackage{titlesec}         
 
-\ProvidesPackage{G2-105-95}
-         [2002/12/12 v0.01 General reqs.]
+\newif\ifmypackage@geometry
+\DeclareOption{geometry}{
+    \mypackage@geometrytrue
+}
 
+\DeclareOption{nogeometry}{
+    \mypackage@geometryfalse
+}
+
+\ExecuteOptions{geometry}
+
+\ProcessOptions\relax
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Размеры шрифтов
@@ -38,27 +49,29 @@
 % Настройки размера страницы
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Основные отступы
-\geometry{
-    a4paper,
-	left=25mm,   % 20mm + 5mm
-	right=10mm,   % 5mm + 5mm
-	top=30mm,	 % 20mm + 10mm
-	bottom=30mm  % 20mm + 10mm
-}
-\parindent=15mm
-\AddEverypageHook{%
-	\ifnum \thepage = 3%
-		% Только для первой страницы
-		\newgeometry{
-			left=25mm,	 % 20mm + 5mm
-			right=10mm,	 % 5mm + 5mm
-			top=15mm,	 % 5mm + 10mm
-			bottom=55mm  % 45mm + 10mm
-		}
-	\else%
-		\restoregeometry%
-	\fi%
-}
+\ifmypackage@geometry
+    \geometry{
+        a4paper,
+    	left=25mm,   % 20mm + 5mm
+    	right=10mm,   % 5mm + 5mm
+    	top=30mm,	 % 20mm + 10mm
+    	bottom=30mm  % 20mm + 10mm
+    }
+    \parindent=15mm
+    \AddEverypageHook{%
+    	\ifnum \thepage = 3%
+    		% Только для первой страницы
+    		\newgeometry{
+    			left=25mm,	 % 20mm + 5mm
+    			right=10mm,	 % 5mm + 5mm
+    			top=15mm,	 % 5mm + 10mm
+    			bottom=55mm  % 45mm + 10mm
+    		}
+    	\else%
+    		\restoregeometry%
+    	\fi%
+    }
+\fi
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -307,3 +320,5 @@
 \setlist[enumerate,1]{leftmargin=15mm, itemsep=0mm}
 \setlist[enumerate,2]{leftmargin=15mm, itemsep=0mm}
 \setlist[enumerate,3]{leftmargin=15mm, itemsep=0mm}
+
+\endinput
