@@ -263,12 +263,14 @@
     				\makeSecondSheetStrings%
     			}%
     		\else
-    			\AddToShipoutPicture{%
-    				% Штамп для остальных листов
-    				\makeOtherSheetFrames%
-    				% Подписи для остальных листов
-    				\makeOtherSheetStrings
-    			}%
+    			\ifnum \thepage > 1
+	    			\AddToShipoutPicture{%
+	    				% Штамп для остальных листов
+	    				\makeOtherSheetFrames%
+	    				% Подписи для остальных листов
+	    				\makeOtherSheetStrings
+	    			}%
+	    		\fi
     		\fi%
     	}%
     }%
