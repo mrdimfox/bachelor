@@ -34,6 +34,8 @@
 
 \ProcessOptions\relax
 
+\def\@gostFirstPage{3}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Размеры шрифтов
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -60,7 +62,7 @@
     	bottom=30mm  % 20mm + 10mm
     }
     \AddEverypageHook{%
-    	\ifnum \thepage = 3%
+    	\ifnum \thepage = \@gostFirstPage%
     		% Только для первой страницы
     		\newgeometry{
     			left=25mm,	 % 20mm + 5mm

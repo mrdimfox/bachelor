@@ -20,10 +20,27 @@
    \mypackage@gostFramesfalse
 }
 
+\DeclareOption{sf1p}{
+	\newcommand{\firstPage}{1}
+}
+
+\DeclareOption{sf2p}{
+	\newcommand{\firstPage}{2}
+}
+
+\DeclareOption{sf3p}{
+	\newcommand{\firstPage}{3}
+}
+
+\DeclareOption{sf4p}{
+	\newcommand{\firstPage}{4}
+}
+
+
 \ExecuteOptions{gostFrames}
+\ExecuteOptions{sf3p}
 
 \ProcessOptions\relax
-
 
 \ifmypackage@gostFrames
     \RequirePackage{G2-105-95} % разное ГОСТовское барахло

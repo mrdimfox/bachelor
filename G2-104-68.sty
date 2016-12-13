@@ -19,14 +19,16 @@
 \DeclareOption{frames}{
     \mypackage@framestrue
 }
-   
+
 \DeclareOption{noframes}{
    \mypackage@framesfalse
-}         
+}
 
 \ExecuteOptions{frames}
 
 \ProcessOptions\relax
+
+\def\@gostFirstPage{3}
 
 %% MACROS \spbox
 %
@@ -255,7 +257,7 @@
     	\renewcommand\LARGE{\@setfontsize\LARGE{10mm}{12mm}\selectfont}%
     	%
     	\ClearShipoutPicture{%
-    		\ifnum \thepage = 3
+    		\ifnum \thepage = \@gostFirstPage
     			\AddToShipoutPicture{%
     				% Штамп для второго листа
     				\makeSecondSheetFrames%
@@ -263,7 +265,7 @@
     				\makeSecondSheetStrings%
     			}%
     		\else
-    			\ifnum \thepage > 1
+	    		\ifnum \thepage > \@gostFirstPage
 	    			\AddToShipoutPicture{%
 	    				% Штамп для остальных листов
 	    				\makeOtherSheetFrames%
