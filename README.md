@@ -8,15 +8,22 @@ Forked from [vedyakov/bachelor](https://github.com/vedyakov/bachelor). Remaded f
 * ``bibliography.tex`` &mdash; all bibliography stuff here;
 * ``environment.tex`` &mdash; some environment definitions.
 
+# Settings files
+``settings`` folder:
+* ``setup.tex`` &mdash; all settings and packages.
+
 # Style files:
+``styles`` folder:
 * ``diplom.sty`` &mdash; main style file,
-* ``G2-104-68.sty``, ``G2-105-95.sty`` &mdash; GOST style files,
+* ``frames-G2-104-68.sty``, ``styles-G2-105-95.sty`` &mdash; GOST style files,
 * ``makevar.sty`` &mdash; handmade package for using local scoped counters
 
 # TODO:
 * [x] make text in frames with variable width, depends on box width;
 * [x] make font size in frames like GOST says;
 * [x] make GOST headings (section, subsection, etc.);
-* [ ] clean styles;
 * [x] make bibliography;
+* [x] make partly pdflatex support;
+* [ ] clean styles;
+* [ ] make full pdflatex support;
 * [ ] all other stuff.
