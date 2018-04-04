@@ -1,39 +1,6 @@
 \documentclass{article}
 
-\usepackage{polyglossia}  % многоязычная вёрстка
-\usepackage{makecell}	  % для работы с выравниваем в таблицах
-\usepackage{multirow}     % разбивка ячейки на несколько рядов
-\usepackage{indentfirst}  % постоянно делать отступ красной строки
-						  % для нового параграфа
-\usepackage{hyperref}	  % гипертекст и перекрёстные ссылки
-
-% Расширенные наборы математических символов
-\usepackage{amssymb,amsmath,amsfonts,latexsym,unicode-math}
-
-% Всё для библиографии
-\usepackage[
-    backend=biber,%
-    style=gost-numeric,%
-    language=auto,%
-    sorting=none,%
-    autolang=other
-]{biblatex}							% основной пакет для работы с библиографией
-\usepackage{csquotes}	  			% умные кавычки
-\addbibresource{bibliography.bib}	% файл с библиографией
-
-\usepackage{diplom}		  % штампы, настройки шрифтов и прочее для диплома
-
-% Устанавливает главный язык документа
-\setdefaultlanguage[spelling=modern,numerals=cyrillic]{russian}
-% Объявляет второй язык документа
-\setotherlanguage{english}
-
-% Свойства шрифтов по умолчанию
-\defaultfontfeatures{Ligatures={TeX}}
-
-\setmainfont[Ligatures=TeX]{Times New Roman}  % основной шрифт документа
-\setsansfont{PT Sans}  % шрифт без засечек
-\setmonofont{Consolas}  % моноширинный шрифт
+\input{settings/setup}
 
 \makeatletter
 
@@ -76,7 +43,7 @@
 
 \begin{document}
 	% Первая страница это Титульный лист
-	% \maketitle команда отключена, так как титульный лист дается на кафедре
+	% \maketitle команда отключена, так как титульный лист даётся на кафедре
 	% Вторая страница это задание
 	% Задание
 	% Поэтому сам диплом начинается с третьей страницы
@@ -88,15 +55,15 @@
 	% Примеры разделов пояснительной записки
 	\include{introduction} % подцепляет файл intoduction.tex
 	\include{overview}
-	% \include{definition} и т.д создаете столько файлов и разделов, сколько нужно
+	% \include{definition} и т.д создаёте столько файлов и разделов, сколько нужно
     % ...
 	% \include{tests}
 	\include{conclusion}
     
-    % Выводим библиогафию
-    % Для правильной работы библиографии неоходимо запустить
+    % Выводим библиографию
+    % Для правильной работы библиографии необходимо запустить
     % сначала XeLaTeX, затем Biber, затем снова XeLaTeX
-    % В файле библиографии .bib должно обязательно присутсвовать поле 
+    % В файле библиографии .bib должно обязательно присутствовать поле 
     % langid для правильной сортировки
     \include{bibliography}
     

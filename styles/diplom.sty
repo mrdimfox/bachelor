@@ -9,7 +9,8 @@
 \RequirePackage{caption}		% оформление подписей
 \RequirePackage{biblatex}		% библиография
 \RequirePackage[titletoc]{appendix} % для приложений
-\RequirePackage{chngcntr}  
+\RequirePackage{chngcntr}
+\RequirePackage{ifxetex}
 
 \newif\ifmypackage@gostFrames
 
@@ -43,11 +44,12 @@
 \ProcessOptions\relax
 
 \ifmypackage@gostFrames
-    \RequirePackage{G2-105-95} % разное ГОСТовское барахло
-    \RequirePackage{G2-104-68} % штампы и рамка
+    \RequirePackage{styles/styles-G2-105-95} % разное ГОСТовское барахло
+    \ifxetex
+        \RequirePackage{styles/frames-G2-104-68} % штампы и рамка
+    \fi
 \else
-    \RequirePackage[noframes]{G2-104-68}
-    \RequirePackage[nogeometry]{G2-105-95}
+    \RequirePackage[nogeometry]{styles/styles-G2-105-95}
 \fi
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

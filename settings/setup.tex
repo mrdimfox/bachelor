@@ -1,0 +1,36 @@
+\usepackage{ifxetex}
+
+\ifxetex
+    \input{settings/lang_xelatex_settings.tex}
+\else
+	\input{settings/lang_and_font_pdflatex_settings.tex}
+\fi
+
+\usepackage{makecell}	  % для работы с выравниваем в таблицах
+\usepackage{multirow}     % разбивка ячейки на несколько рядов
+\usepackage{indentfirst}  % постоянно делать отступ красной строки
+						  % для нового параграфа
+\usepackage{hyperref}	  % гипертекст и перекрёстные ссылки
+
+% Расширенные наборы математических символов
+\usepackage{amssymb,amsmath,amsfonts,latexsym}
+\ifxetex
+    \usepackage{unicode-math}
+\fi
+
+% Всё для библиографии
+\usepackage[
+    backend=biber,%
+    style=gost-numeric,%
+    language=auto,%
+    sorting=none,%
+    autolang=other
+]{biblatex}							% основной пакет для работы с библиографией
+\usepackage{csquotes}	  			% умные кавычки
+\addbibresource{bibliography.bib}	% файл с библиографией
+
+\usepackage{styles/diplom}		  % штампы, настройки шрифтов и прочее для диплома
+
+\ifxetex
+    \input{settings/font_xelatex_settings.tex}
+\fi
