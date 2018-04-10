@@ -8,12 +8,13 @@
 \RequirePackage{lastpage}    % номер последней станицы
 \RequirePackage{polyglossia} % для подключения шрифта GOST type A
 \RequirePackage{setspace}	 % отступы между строками
-\RequirePackage{makevar}	 % локально определённые счётчики
 \RequirePackage{minibox}     % для использования команды '\\' внутри makebox
 \RequirePackage{pbox} 		 % для вычисления ширины текста, включающего '\\'
 
+\RequirePackage{styles/makevar}	 % локально определённые счётчики
+
 \ProvidesPackage{G2-104-68}
-         [2016/04/28 v1.00 GOST Frames]
+		 [2016/04/28 v1.00 GOST Frames]
 
 \ProcessOptions\relax
 
@@ -42,14 +43,21 @@
 }}
 
 
-% Шрифт для заполения рамок GOST type A
+% Шрифт для заполнения рамок GOST type A
 \newfontfamily\gostFont[
-	Path = fonts/,
-	Extension = .ttf,
 	Ligatures = TeX,
 	AutoFakeSlant = 0.26
-]{GostTypeA} %  шрифт для штампов
+]{GOST type A}
 
+% % Шрифт для заполнения рамок GOST type A
+% \newfontfamily\gostFont{GOST type A}
+% \else
+% \newfontfamily\gostFont[
+% 	Path = fonts/,
+% 	Extension = .ttf,
+% 	Ligatures = TeX,
+% 	AutoFakeSlant = 0.26
+% ]{GostTypeA} %  шрифт для штампов
 
 %% ENVIRONMENT
 %
@@ -234,7 +242,7 @@
 %% код для вывода штампов
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Убераем ненужную нумерацию, так как нумерация будет в штампах
+% Убираем ненужную нумерацию, так как нумерация будет в штампах
 \pagestyle{empty}
 
 \EveryShipout{%

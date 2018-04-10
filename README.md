@@ -1,6 +1,15 @@
 # Description
 A simple LaTeX template for bachelor thesis (ITMO University).  
-Forked from [vedyakov/bachelor](https://github.com/vedyakov/bachelor). Remaded for XeLaTex.
+Forked from [vedyakov/bachelor](https://github.com/vedyakov/bachelor). Remade for XeLaTex.
+
+# Notes:
+
+If you are using a ``xelatex`` compiler, there are some stamps appear in your document after compilation. Overwise (for ``pdflatex``) they are not.
+
+Also, for a stamp generation you have to install fonts from the ``fonts`` folder into your system and use one of the _cache command_ according to your tex distro. For example, for TexLive it will be 
+<pre>
+fc-cache -f
+</pre>
 
 # Templates:
 * ``diplom.tex`` &mdash; main file, including other tex-files,
