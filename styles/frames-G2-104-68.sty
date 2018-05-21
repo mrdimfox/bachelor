@@ -124,6 +124,21 @@
 %
 \def\makeSecondSheetFrames{%
 \begin{tikzpicture}[remember picture, overlay, x=1mm, y=1mm]%
+	\draw[black, line  width=0.5mm] (13, 5) rectangle (8,30);%
+	\draw[black, line  width=0.5mm] (20, 5) rectangle (13,30);%
+	
+	\draw[black, line  width=0.5mm] (13, 30) rectangle (8,65);%
+	\draw[black, line  width=0.5mm] (20, 30) rectangle (13,65);%
+	
+	\draw[black, line  width=0.5mm] (13, 65) rectangle (8,90);%
+	\draw[black, line  width=0.5mm] (20, 65) rectangle (13,90);%
+	
+	\draw[black, line  width=0.5mm] (13, 90) rectangle (8,115);%
+	\draw[black, line  width=0.5mm] (20, 90) rectangle (13,115);%
+	
+	\draw[black, line  width=0.5mm] (13, 115) rectangle (8,150);%
+	\draw[black, line  width=0.5mm] (20, 115) rectangle (13,150);%
+	
 	\draw[black, line  width=0.5mm] (20, 5) rectangle (205,292);%
 	\draw[black, line  width=0.5mm] (20, 5) rectangle (205,5+40);%
 	\draw[black, line  width=0.5mm] (20, 5) rectangle (20+65,5+40);%
@@ -153,6 +168,22 @@
 %
 \def\makeOtherSheetFrames{%
 \begin{tikzpicture}[remember picture, overlay, x=1mm, y=1mm]%
+
+	\draw[black, line  width=0.5mm] (13, 5) rectangle (8,30);%
+	\draw[black, line  width=0.5mm] (20, 5) rectangle (13,30);%
+	
+	\draw[black, line  width=0.5mm] (13, 30) rectangle (8,65);%
+	\draw[black, line  width=0.5mm] (20, 30) rectangle (13,65);%
+	
+	\draw[black, line  width=0.5mm] (13, 65) rectangle (8,90);%
+	\draw[black, line  width=0.5mm] (20, 65) rectangle (13,90);%
+	
+	\draw[black, line  width=0.5mm] (13, 90) rectangle (8,115);
+	\draw[black, line  width=0.5mm] (20, 90) rectangle (13,115);%
+	
+	\draw[black, line  width=0.5mm] (13, 115) rectangle (8,150);%
+	\draw[black, line  width=0.5mm] (20, 115) rectangle (13,150);%
+
 	\draw[black, line  width=0.5mm] (20, 5) rectangle (205,292);%
 	\draw[black, line  width=0.5mm] (20, 292-14) rectangle (20+70,292);%
 	\draw[black, line  width=0.5mm] (20, 5) rectangle (20+65,10);%
@@ -177,6 +208,27 @@
 \def\makeSecondSheetStrings{%
 	\unitlength=1mm%
 	\begin{picture}(205,292)(-20,-5)%
+
+		\gostBox{-12}{-2}{-7}{24}{\rotatebox{90}{\small{Инв.№подл.}}}{c}{%
+		\rule[0\baselineskip]{0pt}{\baselineskip}%	
+		}%
+	
+		\gostBox{-12}{23}{-7}{59}{\rotatebox{90}{\small{Подп. и дата}}}{c}{%
+		\rule[0\baselineskip]{0pt}{\baselineskip}%	
+		}%
+	
+		\gostBox{-12}{58}{-7}{84}{\rotatebox{90}{\small{Взам.инв.№}}}{c}{%
+		\rule[0\baselineskip]{0pt}{\baselineskip}%	
+		}%
+	
+		\gostBox{-12}{83}{-7}{109}{\rotatebox{90}{\small{Инв.№дубл.}}}{c}{%
+		\rule[0\baselineskip]{0pt}{\baselineskip}%	
+		}%
+	
+		\gostBox{-12}{108}{-7}{144}{\rotatebox{90}{\small{Подп. и дата}}}{c}{%
+		\rule[0\baselineskip]{0pt}{\baselineskip}%	
+		}%
+	
 		\gostBox{0}{25}{7}{30}{\small{Изм.}}{c}{}%
 		\gostBox{7}{25}{17}{30}{\small{Лист}}{c}{}%
 		\gostBox{17}{25}{40}{30}{\small{№ докум.}}{c}{}%
@@ -219,6 +271,27 @@
 \def\makeOtherSheetStrings{%
 	\unitlength=1mm%
 	\begin{picture}(205,292)(-20,-5)%
+	
+		\gostBox{-12}{-2}{-7}{24}{\rotatebox{90}{\small{Инв.№подл.}}}{c}{%
+		\rule[0\baselineskip]{0pt}{\baselineskip}%	
+		}%
+		
+		\gostBox{-12}{23}{-7}{59}{\rotatebox{90}{\small{Подп. и дата}}}{c}{%
+		\rule[0\baselineskip]{0pt}{\baselineskip}%	
+		}%
+		
+		\gostBox{-12}{58}{-7}{84}{\rotatebox{90}{\small{Взам.инв.№}}}{c}{%
+		\rule[0\baselineskip]{0pt}{\baselineskip}%	
+		}%
+		
+		\gostBox{-12}{83}{-7}{109}{\rotatebox{90}{\small{Инв.№дубл.}}}{c}{%
+		\rule[0\baselineskip]{0pt}{\baselineskip}%	
+		}%
+		
+		\gostBox{-12}{108}{-7}{144}{\rotatebox{90}{\small{Подп. и дата}}}{c}{%
+		\rule[0\baselineskip]{0pt}{\baselineskip}%	
+		}%
+		
 		\gostBox{0}{0}{7}{5}{\small{Изм.}}{c}{}%
 		\gostBox{7}{0}{17}{5}{\small{Лист}}{c}{}%
 		\gostBox{17}{0}{40}{5}{\small{№~докум.}}{c}{}%
